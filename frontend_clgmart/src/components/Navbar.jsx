@@ -4,7 +4,7 @@ import axios from '../services/api'
 import CollegeSelector from './CollegeSelector'
 
 const heartIcon = new URL('/heart-icon.svg', import.meta.url).href
-// use existing envelope icon from public/ so it resolves correctly
+
 const chatIcon = new URL('/envelope-icon.svg', import.meta.url).href
 const profileIcon = new URL('/user-profile-icon.svg', import.meta.url).href
 const searchIcon = new URL('/search-icon.svg', import.meta.url).href

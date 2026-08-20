@@ -1,7 +1,4 @@
-/**
- * Returns a set of theme-aware style values based on the current theme name.
- * Use this in footer pages so they respond to the site's active theme.
- */
+
 export function getThemeStyles(theme) {
   const map = {
     light: {

@@ -20,15 +20,14 @@ export default function CategoryTabs({ selectedCategory, setSelectedCategory }) 
 
   const handleCategoryClick = (cat) => {
     setSelectedCategory(cat)
-    
-    // If "All Categories" is selected, scroll to categories section
+
     if (cat === '☰ ALL CATEGORIES') {
       const element = document.getElementById('categories-section')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     } else {
-      // Navigate to category page
+
       navigate(`/category/${encodeURIComponent(cat)}`)
     }
   }

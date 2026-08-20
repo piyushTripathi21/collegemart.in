@@ -1,9 +1,5 @@
 import { useTheme } from './ThemeContext'
 
-/**
- * Returns a set of ready-to-use style values that match the active theme.
- * Use these in inline styles to make any component theme-aware.
- */
 export function useThemeStyles() {
   const { theme } = useTheme()
 
@@ -15,7 +11,6 @@ export function useThemeStyles() {
     theme,
     isDark: dark,
 
-    // Backgrounds
     pageBg:      dark ? '#0d1117'  : ocean ? '#e8f4fd'  : sunset ? '#fff3e8'  : '#f2f4f5',
     navbarBg:    dark ? '#161b27'  : '#ffffff',
     cardBg:      dark ? '#1e2235'  : '#ffffff',
@@ -24,23 +19,18 @@ export function useThemeStyles() {
     inputBg:     dark ? '#252836'  : '#ffffff',
     overlayBg:   dark ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.4)',
 
-    // Text
     textPrimary: dark ? '#e8eaf0'  : ocean ? '#0a3d62'  : sunset ? '#6b2d0e'  : '#002f34',
     textMuted:   dark ? '#8892a4'  : ocean ? '#5d82a0'  : sunset ? '#a06040'  : '#888888',
     textHeading: dark ? '#f0f2f8'  : '#111111',
 
-    // Borders
     borderColor: dark ? '#2e3347'  : ocean ? '#b3d4f0'  : sunset ? '#f0cba8'  : '#e0e0e0',
     borderLight: dark ? '#252836'  : '#f0f0f0',
 
-    // Accent / brand
     accent:      dark ? '#23e5db'  : ocean ? '#1a73e8'  : sunset ? '#f97316'  : '#23e5db',
 
-    // Buttons
     btnPrimary:  dark ? '#23e5db'  : ocean ? '#1a73e8'  : sunset ? '#f97316'  : '#23e5db',
     btnPrimaryText: dark ? '#0d1117' : '#ffffff',
 
-    // Shadows
     cardShadow:  dark
       ? '0 2px 12px rgba(0,0,0,0.45)'
       : '0 2px 12px rgba(15,23,42,0.08)',
@@ -48,7 +38,6 @@ export function useThemeStyles() {
       ? '0 8px 30px rgba(0,0,0,0.6)'
       : '0 8px 30px rgba(15,23,42,0.15)',
 
-    // Footer
     footerBg:    dark ? '#0d1117'  : '#f2f4f5',
     footerBottomBg: dark ? '#090c12' : '#002f34',
   }

@@ -1,14 +1,11 @@
 import axios from 'axios'
 
-// Set global axios defaults for CSRF protection
 axios.defaults.xsrfCookieName = 'csrfToken';
 axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
 
-// Create API client instance
 const api = axios.create({
   baseURL: '/api/v1',
-  // baseURL: (import.meta.env.VITE_API_URL || '') + '/api/v1',
-  // withCredentials: true,
+
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -17,10 +14,9 @@ const api = axios.create({
   xsrfHeaderName: 'X-CSRF-Token'
 })
 
-// Add request interceptor to include auth token and normalize URLs to prevent double '/api/v1' prefixing
 api.interceptors.request.use(
   (config) => {
-    // Normalize URLs to prevent double prefixing
+
     if (config.url) {
       if (config.url.startsWith('/api/v1/')) {
         config.url = config.url.substring(7)
@@ -43,7 +39,6 @@ api.interceptors.request.use(
   }
 )
 
-// Add response interceptor for error handling with retry logic
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -52,7 +47,6 @@ api.interceptors.response.use(
       return Promise.reject(error);
     }
 
-    // Check if this error is transient and retry-eligible
     const isNetworkError = !error.response && error.code !== 'ERR_CANCELED';
     const isTransientServerError = error.response && [502, 503, 504].includes(error.response.status);
     const isTimeout = error.code === 'ECONNABORTED';
@@ -73,13 +67,11 @@ api.interceptors.response.use(
       }
     }
 
-    // Handle 401 - Token expired or invalid
     if (error.response?.status === 401) {
       localStorage.removeItem('user')
       window.location.href = '/login'
     }
 
-    // Return error with better structure
     const message = error.response?.data?.error || error.message || 'An error occurred'
     return Promise.reject({
       status: error.response?.status || 500,
@@ -89,11 +81,6 @@ api.interceptors.response.use(
   }
 )
 
-// ============================================================================
-// API METHODS - Organized by resource
-// ============================================================================
-
-// AUTHENTICATION
 export const authAPI = {
   register: (email, password, name, college) =>
     api.post('/users/register', { email, password, name, college }),
@@ -103,7 +90,6 @@ export const authAPI = {
     api.get('/users/me')
 }
 
-// USERS
 export const usersAPI = {
   getUser: (id) =>
     api.get(`/users/${id}`),
@@ -126,7 +112,6 @@ export const usersAPI = {
     api.delete(`/users/${id}/favorites/${productId}`)
 }
 
-// PRODUCTS
 export const productsAPI = {
   getAll: (page = 1, limit = 20) =>
     api.get('/products', { params: { page, limit } }),
@@ -161,7 +146,6 @@ export const productsAPI = {
     api.post(`/products/${id}/report`, { reason, details })
 }
 
-// REVIEWS
 export const reviewsAPI = {
   getByProduct: (productId) =>
     api.get(`/products/${productId}/reviews`),
@@ -169,7 +153,6 @@ export const reviewsAPI = {
     api.post(`/products/${productId}/reviews`, { rating, comment })
 }
 
-// OFFERS
 export const offersAPI = {
   getByProduct: (productId) =>
     api.get(`/products/${productId}/offers`),
@@ -179,7 +162,6 @@ export const offersAPI = {
     api.put(`/offers/${offerId}`, { status, message })
 }
 
-// MESSAGES
 export const messagesAPI = {
   getByProduct: (productId, page = 1, limit = 50) =>
     api.get('/messages', { params: { product_id: productId, page, limit } }),
@@ -191,13 +173,11 @@ export const messagesAPI = {
     api.put('/messages/read', { product_id: productId })
 }
 
-// NOTIFICATIONS
 export const notificationsAPI = {
   get: () =>
     api.get('/notifications')
 }
 
-// HEALTH CHECK
 export const healthAPI = {
   check: () =>
     api.get('/health')

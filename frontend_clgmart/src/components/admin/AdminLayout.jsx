@@ -12,7 +12,6 @@ export default function AdminLayout() {
 
   const fetchPendingReportsRef = useRef()
 
-  // Keep the ref updated with the latest fetch logic
   useEffect(() => {
     fetchPendingReportsRef.current = async () => {
       try {
@@ -38,12 +37,10 @@ export default function AdminLayout() {
     setAdmin(JSON.parse(savedAdmin))
     setLoading(false)
 
-    // Initial fetch
     if (fetchPendingReportsRef.current) {
       fetchPendingReportsRef.current()
     }
 
-    // Setup an interval to poll reports count every 30 seconds using the ref to avoid stale closures
     const interval = setInterval(() => {
       if (fetchPendingReportsRef.current) {
         fetchPendingReportsRef.current()
@@ -139,7 +136,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen flex font-sans" style={{ background: 'var(--bg-gradient)', backgroundAttachment: 'fixed', color: 'var(--text-primary)' }}>
-      {/* Sidebar for Desktop */}
+      {}
       <aside className="hidden lg:flex lg:flex-col w-64 shrink-0 sticky top-0 h-screen select-none z-30" style={{ background: 'var(--navbar-bg)', borderRight: '1px solid var(--border-color)' }}>
         <div className="p-6" style={{ borderBottom: '1px solid var(--border-color)' }}>
           <Link to="/admin" className="flex items-center space-x-2 group">
@@ -158,7 +155,7 @@ export default function AdminLayout() {
           </Link>
         </div>
 
-        {/* Admin info card */}
+        {}
         {admin && (
           <div className="px-6 py-4" style={{ borderBottom: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.04)' }}>
             <p className="text-sm font-semibold truncate" style={{ color: 'var(--text-primary)' }}>{admin.name}</p>
@@ -169,7 +166,7 @@ export default function AdminLayout() {
           </div>
         )}
 
-        {/* Sidebar Nav */}
+        {}
         <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1.5 scrollbar-thin">
           {menuItems.map((item) => {
             const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path))
@@ -198,7 +195,7 @@ export default function AdminLayout() {
           })}
         </nav>
 
-        {/* Footer Logout */}
+        {}
         <div className="p-4" style={{ borderTop: '1px solid var(--border-color)' }}>
           <button
             onClick={handleLogout}
@@ -211,7 +208,7 @@ export default function AdminLayout() {
         </div>
       </aside>
 
-      {/* Mobile Drawer menu and backdrop */}
+      {}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
@@ -288,9 +285,9 @@ export default function AdminLayout() {
         </div>
       )}
 
-      {/* Main Content Wrapper */}
+      {}
       <div className="flex-1 flex flex-col min-w-0 min-h-screen">
-        {/* Header */}
+        {}
         <header className="h-16 flex items-center justify-between px-6 sticky top-0 z-20 shadow-sm" style={{ background: 'var(--navbar-bg)', borderBottom: '1px solid var(--border-color)' }}>
           <div className="flex items-center space-x-4">
             <button
@@ -309,7 +306,7 @@ export default function AdminLayout() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {/* View site link */}
+            {}
             <a
               href="/"
               target="_blank"
@@ -321,7 +318,7 @@ export default function AdminLayout() {
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
             </a>
 
-            {/* Quick avatar dropdown */}
+            {}
             <div className="flex items-center space-x-2.5 pl-3" style={{ borderLeft: '1px solid var(--border-color)' }}>
               <div className="w-8 h-8 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-sm select-none shadow-md">
                 {admin?.name?.charAt(0).toUpperCase() || 'A'}
@@ -331,7 +328,7 @@ export default function AdminLayout() {
           </div>
         </header>
 
-        {/* Content Outlet */}
+        {}
         <main className="flex-1 p-6 overflow-y-auto scrollbar-thin" style={{ background: 'transparent' }}>
           <Outlet />
         </main>

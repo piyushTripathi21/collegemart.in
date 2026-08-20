@@ -28,7 +28,7 @@ export default function Footer() {
   }
 
   const handleCollegeClick = (college) => {
-    // Save college to localStorage
+
     localStorage.setItem('selectedCollege', college.route)
     handleScrollToTop()
   }

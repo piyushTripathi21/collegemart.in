@@ -14,7 +14,6 @@ export default function AdminUsers() {
   const [isRateLimited, setIsRateLimited] = useState(false)
   const fetchInFlight = useRef(false)
 
-  // Modals state
   const [selectedUser, setSelectedUser] = useState(null)
   const [detailsUser, setDetailsUser] = useState(null)
   const [showBanModal, setShowBanModal] = useState(false)
@@ -163,13 +162,13 @@ export default function AdminUsers() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>User Management</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Manage all registered site members, ban violations, and adjust coin balances.</p>
       </div>
 
-      {/* Filter and Search Bar */}
+      {}
       <div className="p-4 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-4" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <form onSubmit={handleSearchSubmit} className="flex-1 flex gap-2">
           <input
@@ -211,7 +210,7 @@ export default function AdminUsers() {
         </div>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -229,7 +228,7 @@ export default function AdminUsers() {
         </div>
       )}
 
-      {/* Users Table */}
+      {}
       <div className="rounded-xl border overflow-hidden shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -336,7 +335,7 @@ export default function AdminUsers() {
           </table>
         </div>
 
-        {/* Pagination Footer */}
+        {}
         {pagination.pages > 1 && (
           <div className="p-4 border-t flex items-center justify-between text-xs font-semibold" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)', color: 'var(--text-muted)' }}>
             <span>Showing page {pagination.page} of {pagination.pages} ({pagination.total} total users)</span>
@@ -362,7 +361,7 @@ export default function AdminUsers() {
         )}
       </div>
 
-      {/* User Details Modal */}
+      {}
       {detailsUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDetailsUser(null)} />
@@ -415,7 +414,7 @@ export default function AdminUsers() {
               </div>
             )}
 
-            {/* User Products section */}
+            {}
             <div className="space-y-3">
               <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>User Products ({detailsUser.products?.length || 0})</h3>
               {detailsUser.products?.length > 0 ? (
@@ -444,7 +443,7 @@ export default function AdminUsers() {
               )}
             </div>
 
-            {/* Bans history */}
+            {}
             {detailsUser.bans?.length > 0 && (
               <div className="space-y-3">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Ban History</h3>
@@ -469,7 +468,7 @@ export default function AdminUsers() {
         </div>
       )}
 
-      {/* Ban User Modal */}
+      {}
       {showBanModal && selectedUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowBanModal(false)} />
@@ -545,7 +544,7 @@ export default function AdminUsers() {
         </div>
       )}
 
-      {/* Coin Adjustment Modal */}
+      {}
       {showCoinsModal && selectedUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowCoinsModal(false)} />
@@ -609,7 +608,7 @@ export default function AdminUsers() {
         </div>
       )}
 
-      {/* Edit User Modal */}
+      {}
       {showEditModal && selectedUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowEditModal(false)} />

@@ -12,7 +12,6 @@ export default function CollegeSelector({ currentCollege, onCollegeChange }) {
   const dropdownRef = useRef(null)
   const navigate = useNavigate()
 
-  // Sync input whenever currentCollege changes externally
   useEffect(() => {
     setSearchQuery(currentCollege || '')
   }, [currentCollege])
@@ -48,7 +47,7 @@ export default function CollegeSelector({ currentCollege, onCollegeChange }) {
   }, [searchQuery])
 
   const handleCollegeSelect = (college) => {
-    // Blur the input first to prevent dropdown reopening
+
     if (inputRef.current) {
       inputRef.current.blur()
     }
@@ -124,7 +123,7 @@ export default function CollegeSelector({ currentCollege, onCollegeChange }) {
   }
 
   const handleBlur = () => {
-    // Close dropdown after a delay to allow click events to register
+
     setTimeout(() => {
       setShowDropdown(false)
     }, 200)

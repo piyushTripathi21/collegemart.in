@@ -41,13 +41,13 @@ export default function AdminMessages() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Chat Message Moderation</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Inspect conversation transcripts for listings and moderate policy violations.</p>
       </div>
 
-      {/* Lookup Bar */}
+      {}
       <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <form onSubmit={handleFetchMessages} className="flex flex-col sm:flex-row gap-3 items-end">
           <div className="flex-1 space-y-1.5">
@@ -74,14 +74,14 @@ export default function AdminMessages() {
         </form>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Chat Logs Window */}
+      {}
       {searched && !loading && (
         <div className="rounded-xl border p-6 shadow-sm space-y-4" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="flex justify-between items-center pb-3 border-b" style={{ borderColor: 'var(--border-color)' }}>

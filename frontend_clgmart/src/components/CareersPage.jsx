@@ -12,7 +12,6 @@ const whyCards = [
   { title: 'Build with Purpose', desc: 'Every feature you ship helps students save money and find what they need within their campus community.' }
 ]
 
-
 const s = {
   page: { minHeight: '100vh', backgroundColor: '#ffffff', fontFamily: 'inherit' },
   header: { backgroundColor: '#ffffff', borderBottom: '1px solid #e5e7eb', padding: '16px 24px' },
@@ -44,7 +43,6 @@ const s = {
   videoEl: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }
 }
 
-
 export default function CareersPage({ user, onOpenLogin }) {
   const navigate = useNavigate()
   const { theme } = useTheme()
@@ -68,7 +66,7 @@ export default function CareersPage({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the careers page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',
@@ -95,7 +93,7 @@ export default function CareersPage({ user, onOpenLogin }) {
       }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
-        {/* Header */}
+        {}
         <header style={{ ...s.header, backgroundColor: t.headerBg, borderBottomColor: t.border }}>
           <div style={s.headerInner}>
             <Link to="/" className="navbar-logo" style={{ textDecoration: 'none', marginRight: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -123,7 +121,7 @@ export default function CareersPage({ user, onOpenLogin }) {
         </header>
 
         <main>
-          {/* Hero */}
+          {}
           <section style={{ ...s.hero, backgroundColor: 'transparent', borderBottomColor: t.border }}>
             <span style={{ ...s.heroTag, color: t.tagText }}>Careers at CollegeMart</span>
             <h1 style={{ ...s.heroH1, color: t.textPrimary }}>Shape Your Future at CollegeMart</h1>
@@ -132,7 +130,7 @@ export default function CareersPage({ user, onOpenLogin }) {
             </p>
           </section>
 
-          {/* Video Section */}
+          {}
           <section id="working-at-collegemart" style={{ ...s.section, backgroundColor: 'transparent', borderTopColor: t.borderLight }}>
             <div style={s.sectionInner}>
               <h2 style={{ ...s.sectionH2, textAlign: 'center', color: t.textPrimary }}>Working at CollegeMart</h2>
@@ -151,7 +149,7 @@ export default function CareersPage({ user, onOpenLogin }) {
             </div>
           </section>
 
-          {/* Open Roles + Why CollegeMart */}
+          {}
           <section id="join-us" style={{ ...s.section, backgroundColor: 'transparent', borderTopColor: t.borderLight }}>
             <div style={s.sectionInner}>
               <div style={s.grid2}>
@@ -183,7 +181,6 @@ export default function CareersPage({ user, onOpenLogin }) {
               </div>
             </div>
           </section>
-
 
         </main>
 

@@ -41,13 +41,13 @@ export default function AdminCoins() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Coins & Wallet Economy</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Track platform reward distribution and leaderboard coin balances.</p>
       </div>
 
-      {/* Stats Cards */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>Total Virtual Coins Pool</p>
@@ -72,9 +72,9 @@ export default function AdminCoins() {
         </div>
       </div>
 
-      {/* Leaderboard & Distribution grid */}
+      {}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Top coin holders */}
+        {}
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>Coin Holder Leaderboard</h4>
           {stats?.topUsers?.length > 0 ? (
@@ -103,7 +103,7 @@ export default function AdminCoins() {
           )}
         </div>
 
-        {/* Distribution chart */}
+        {}
         <div className="p-5 rounded-xl border space-y-4" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>Coin Wallet Distribution</h4>
           {stats?.distribution?.length > 0 ? (

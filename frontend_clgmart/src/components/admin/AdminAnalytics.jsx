@@ -94,7 +94,7 @@ export default function AdminAnalytics() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>System Analytics</h1>
@@ -129,7 +129,7 @@ export default function AdminAnalytics() {
         </div>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
@@ -142,9 +142,9 @@ export default function AdminAnalytics() {
         </div>
       ) : (
         <div className="space-y-6">
-          {/* Charts Row 1 */}
+          {}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* User Growth */}
+            {}
             <div style={cardStyle} className="space-y-4">
               <div>
                 <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>User Signup Growth</h4>
@@ -165,7 +165,7 @@ export default function AdminAnalytics() {
               )}
             </div>
 
-            {/* Platform Revenue */}
+            {}
             <div style={cardStyle} className="space-y-4">
               <div>
                 <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>Marketplace Cashflow Volume</h4>
@@ -187,9 +187,9 @@ export default function AdminAnalytics() {
             </div>
           </div>
 
-          {/* Charts Row 2 */}
+          {}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Listing growth */}
+            {}
             <div style={cardStyle} className="space-y-4">
               <div>
                 <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>New Product Listings</h4>
@@ -210,7 +210,7 @@ export default function AdminAnalytics() {
               )}
             </div>
 
-            {/* Sold list growth */}
+            {}
             <div style={cardStyle} className="space-y-4">
               <div>
                 <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>Completed Sales Count</h4>
@@ -232,7 +232,7 @@ export default function AdminAnalytics() {
             </div>
           </div>
 
-          {/* Category Performance Analytics */}
+          {}
           <div style={cardStyle}>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>Category Economic Breakdown</h4>
             <div className="overflow-x-auto">

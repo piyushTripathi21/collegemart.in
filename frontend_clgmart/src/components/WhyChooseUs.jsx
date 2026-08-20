@@ -43,29 +43,26 @@ export default function WhyChooseUs() {
   const t = getThemeStyles(theme)
   const isDark = theme === 'dark'
 
-  // ── colours ──────────────────────────────────────────
   const cardBg    = isDark ? 'rgba(30,34,53,0.85)' : 'rgba(255,255,255,0.88)'
   const cardBorder= isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'
   const titleClr  = isDark ? '#e8eaf0' : '#1a2340'
   const descClr   = isDark ? '#8892a4' : '#5a6a85'
   const headingClr= t.accent
 
-  // CTA banner gradient — uses site accent teal into indigo/purple
   const ctaBg = isDark
     ? 'linear-gradient(135deg, #0f2033 0%, #1a1060 100%)'
     : 'linear-gradient(135deg, #23e5db 0%, #6366f1 60%, #8b5cf6 100%)'
 
-  // CTA button — teal pill matching navbar + SELL button
   const ctaBtnBg = '#23e5db'
   const ctaBtnColor = '#002f34'
 
   return (
     <>
-      {/* ── WHY CHOOSE US ──────────────────────────────── */}
+      {}
       <section style={{ padding: '60px 24px', background: 'transparent' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          {/* Heading */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h2 style={{
               fontSize: 'clamp(22px, 4vw, 32px)', fontWeight: 800,
@@ -79,7 +76,7 @@ export default function WhyChooseUs() {
             </p>
           </div>
 
-          {/* Feature cards */}
+          {}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -110,7 +107,7 @@ export default function WhyChooseUs() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                {/* Icon */}
+                {}
                 <div style={{
                   width: '64px', height: '64px', borderRadius: '18px',
                   background: f.iconBg,
@@ -139,7 +136,7 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-      {/* ── SELL CTA BANNER ──────────────────────────────── */}
+      {}
       <section style={{ padding: '0 24px 64px', background: 'transparent' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{
@@ -157,7 +154,7 @@ export default function WhyChooseUs() {
             position: 'relative',
             overflow: 'hidden',
           }}>
-            {/* decorative circles */}
+            {}
             <div style={{
               position: 'absolute', top: '-40px', right: '120px',
               width: '160px', height: '160px', borderRadius: '50%',
@@ -169,7 +166,7 @@ export default function WhyChooseUs() {
               background: 'rgba(255,255,255,0.05)', pointerEvents: 'none',
             }} />
 
-            {/* Text */}
+            {}
             <div style={{ position: 'relative', flex: 1, minWidth: '220px' }}>
               <h2 style={{
                 fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 800,
@@ -185,7 +182,7 @@ export default function WhyChooseUs() {
               </p>
             </div>
 
-            {/* CTA Button */}
+            {}
             <button
               onClick={() => navigate('/sell')}
               style={{

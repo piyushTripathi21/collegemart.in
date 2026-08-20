@@ -50,20 +50,20 @@ export default function AdminReviews() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Seller Reviews Moderation</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Moderate feedback left by buyers and delete reviews violating guidelines.</p>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Reviews Table */}
+      {}
       <div className="rounded-xl border overflow-hidden shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -118,7 +118,7 @@ export default function AdminReviews() {
           </table>
         </div>
 
-        {/* Pagination Footer */}
+        {}
         {pagination.pages > 1 && (
           <div className="p-4 border-t flex items-center justify-between text-xs font-semibold" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)', color: 'var(--text-muted)' }}>
             <span>Showing page {pagination.page} of {pagination.pages} ({pagination.total} total reviews)</span>

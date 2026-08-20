@@ -14,7 +14,6 @@ export default function AdminProducts() {
   const [pagination, setPagination] = useState({ total: 0, pages: 1 })
   const [error, setError] = useState('')
 
-  // Modals state
   const [detailsProduct, setDetailsProduct] = useState(null)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [showHideModal, setShowHideModal] = useState(false)
@@ -149,13 +148,13 @@ export default function AdminProducts() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Product Management</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>View and moderate all college listings, toggle featured status, or hide policy violations.</p>
       </div>
 
-      {/* Filter and Search Bar */}
+      {}
       <div className="p-4 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-4" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <form onSubmit={handleSearchSubmit} className="flex-1 flex gap-2">
           <input
@@ -218,14 +217,14 @@ export default function AdminProducts() {
         </div>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Products Table */}
+      {}
       <div className="rounded-xl border overflow-hidden shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -367,7 +366,7 @@ export default function AdminProducts() {
           </table>
         </div>
 
-        {/* Pagination Footer */}
+        {}
         {pagination.pages > 1 && (
           <div className="p-4 border-t flex items-center justify-between text-xs font-semibold" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)', color: 'var(--text-muted)' }}>
             <span>Showing page {pagination.page} of {pagination.pages} ({pagination.total} total products)</span>
@@ -393,7 +392,7 @@ export default function AdminProducts() {
         )}
       </div>
 
-      {/* Product Details Modal */}
+      {}
       {detailsProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDetailsProduct(null)} />
@@ -418,7 +417,7 @@ export default function AdminProducts() {
               </button>
             </div>
 
-            {/* Images Gallery */}
+            {}
             {detailsProduct.images?.length > 0 && (
               <div className="space-y-2">
                 <p className="text-xs uppercase font-semibold" style={{ color: 'var(--text-muted)' }}>Image Gallery</p>
@@ -432,7 +431,7 @@ export default function AdminProducts() {
               </div>
             )}
 
-            {/* Descriptions & Specs */}
+            {}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className="p-4 rounded-xl border" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)' }}>
                 <p className="text-xs uppercase font-semibold" style={{ color: 'var(--text-muted)' }}>Price</p>
@@ -453,7 +452,7 @@ export default function AdminProducts() {
               <p className="leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-primary)' }}>{detailsProduct.description}</p>
             </div>
 
-            {/* Seller Contact Info */}
+            {}
             <div className="p-4 rounded-xl border text-sm space-y-3" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)' }}>
               <p className="text-xs uppercase font-semibold" style={{ color: 'var(--text-muted)' }}>Seller Information</p>
               <div className="flex flex-wrap gap-x-8 gap-y-2 text-xs">
@@ -463,7 +462,7 @@ export default function AdminProducts() {
               </div>
             </div>
 
-            {/* Visibility notes */}
+            {}
             {detailsProduct.is_hidden && (
               <div className="bg-rose-500/10 border border-rose-500/20 p-4 rounded-xl text-sm">
                 <p className="text-rose-600 dark:text-rose-400 font-bold text-xs uppercase mb-1">Hidden from Public View</p>
@@ -471,7 +470,7 @@ export default function AdminProducts() {
               </div>
             )}
 
-            {/* Reports moderation list */}
+            {}
             {detailsProduct.reports?.length > 0 && (
               <div className="space-y-3">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Reports Moderation queue ({detailsProduct.reports.length})</h3>
@@ -495,7 +494,7 @@ export default function AdminProducts() {
         </div>
       )}
 
-      {/* Hide Reason Modal */}
+      {}
       {showHideModal && selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowHideModal(false)} />
@@ -538,7 +537,7 @@ export default function AdminProducts() {
         </div>
       )}
 
-      {/* Edit Product Modal */}
+      {}
       {showEditModal && selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowEditModal(false)} />

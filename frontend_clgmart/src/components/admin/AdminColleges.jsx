@@ -23,20 +23,20 @@ export default function AdminColleges() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Active College Directories</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>View performance listings and registration density per college institute.</p>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Colleges Table */}
+      {}
       <div className="rounded-xl border overflow-hidden shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">

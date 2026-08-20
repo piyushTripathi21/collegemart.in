@@ -24,10 +24,8 @@ export const errorHandler = (err, req, res, next) => {
     responseMessage = 'File size too large. Maximum allowed size is 5MB.';
   }
 
-  // Log full error details securely on the server with request ID
   console.error(`[ERROR] [${req.id || 'N/A'}] STATUS=${status} MESSAGE="${err.message}"`, err.stack);
 
-  // Return standard sanitised message to avoid leaking database internals to the client
   if (status === 500) {
     responseMessage = 'An unexpected error occurred. Please contact support.';
   }

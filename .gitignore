@@ -12,5 +12,7 @@ build/
 *~
 .env.*.local
 public/uploads/
+backend/public/uploads/
+backend/mysql_data/
 backups/
 collegemart-production.zip

@@ -23,8 +23,7 @@ async function addWalletCoinsColumn() {
     });
     
     console.log('🔗 Connected to database\n');
-    
-    // Check if column already exists
+
     const [checkColumn] = await connection.query(
       `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
        WHERE TABLE_NAME = 'users' AND COLUMN_NAME = 'coins' AND TABLE_SCHEMA = ?`,
@@ -34,13 +33,12 @@ async function addWalletCoinsColumn() {
     if (checkColumn.length > 0) {
       console.log('✅ Coins column already exists in users table\n');
     } else {
-      // Add coins column
+
       console.log('⚙️  Adding coins column to users table...');
       await connection.query('ALTER TABLE users ADD COLUMN coins INT DEFAULT 0');
       console.log('✅ Coins column added successfully\n');
     }
-    
-    // Verify
+
     const [users] = await connection.query('SELECT COUNT(*) as count FROM users');
     console.log(`📊 Total users in database: ${users[0].count}\n`);
     

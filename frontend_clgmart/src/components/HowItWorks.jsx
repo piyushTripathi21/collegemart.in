@@ -45,7 +45,6 @@ export default function HowItWorks() {
 
   const isDark = theme === 'dark'
 
-  // Background that contrasts with both the categories section and fresh recommendations
   const sectionBg = 'transparent'
 
   const iconBg = isDark
@@ -89,7 +88,7 @@ export default function HowItWorks() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* subtle decorative blobs */}
+      {}
       <div style={{
         position: 'absolute', top: '-80px', right: '-80px',
         width: '300px', height: '300px', borderRadius: '50%',
@@ -104,7 +103,7 @@ export default function HowItWorks() {
       }} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative' }}>
-        {/* Heading */}
+        {}
         <h2 style={{
           textAlign: 'center',
           fontSize: 'clamp(22px, 4vw, 32px)',
@@ -124,7 +123,7 @@ export default function HowItWorks() {
           Sell or buy anything on your campus in 3 simple steps
         </p>
 
-        {/* Steps */}
+        {}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -159,9 +158,9 @@ export default function HowItWorks() {
                 e.currentTarget.style.boxShadow = 'none'
               }}
             >
-              {/* Step number badge */}
+              {}
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%' }}>
-                {/* Icon box */}
+                {}
                 <div style={{
                   width: '64px', height: '64px', borderRadius: '14px', flexShrink: 0,
                   background: iconBg, border: `1.5px solid ${iconBorder}`,
@@ -169,7 +168,7 @@ export default function HowItWorks() {
                 }}>
                   {step.icon(accentColor)}
                 </div>
-                {/* Step label */}
+                {}
                 <span style={{
                   marginLeft: 'auto',
                   fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em',
@@ -199,7 +198,7 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        {/* CTA Button */}
+        {}
         <div style={{ textAlign: 'center' }}>
           <button
             onClick={() => navigate('/sell')}

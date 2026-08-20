@@ -3,7 +3,6 @@ import COLLEGES from '../data/colleges.js';
 
 const router = express.Router();
 
-// College suggestion endpoint for navbar search
 router.get('/suggest', (req, res) => {
   try {
     const q = req.query.q || '';
@@ -27,7 +26,6 @@ router.get('/suggest', (req, res) => {
   }
 });
 
-// College find endpoint for when user clicks location button
 router.get('/find', (req, res) => {
   try {
     const name = req.query.name || '';

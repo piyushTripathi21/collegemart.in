@@ -111,7 +111,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
       overflow: 'hidden',
       fontFamily: 'inherit'
     }}>
-      {/* Subtle decorative blobs across the about page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '500px', height: '500px', borderRadius: '50%',
@@ -141,7 +141,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
         <Navbar user={user} onOpenLogin={onOpenLogin} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} searchQuery={searchQuery} setSearchQuery={setSearchQuery} selectedCollege={selectedCollege} onCollegeChange={onCollegeChange} onSearchSubmit={onSearchSubmit} />
         <main>
 
-          {/* Hero */}
+          {}
           <section style={{ backgroundColor: 'transparent', borderBottom: `1px solid ${t.border}`, padding: '64px 24px' }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
               <div>
@@ -174,7 +174,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
             </div>
           </section>
 
-          {/* Learn More */}
+          {}
           {showMore && (
             <section style={{ padding: '40px 24px', backgroundColor: 'transparent', borderTop: `1px solid ${t.borderLight}` }}>
               <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -198,7 +198,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
             </section>
           )}
 
-          {/* Core Values */}
+          {}
           <section style={{ padding: '64px 24px', borderTop: `1px solid ${t.borderLight}`, backgroundColor: 'transparent' }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', alignItems: 'start' }}>
               <div>
@@ -229,7 +229,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
             </div>
           </section>
 
-          {/* Life at CollegeMart */}
+          {}
           <section style={{ padding: '64px 24px', backgroundColor: 'transparent', borderTop: `1px solid ${t.borderLight}` }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', alignItems: 'center' }}>
               <div>
@@ -252,7 +252,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
             </div>
           </section>
 
-          {/* Testimonials */}
+          {}
           <section style={{ padding: '64px 24px', borderTop: `1px solid ${t.borderLight}`, backgroundColor: 'transparent' }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', maxWidth: '560px', margin: '0 auto 40px' }}>
@@ -272,7 +272,7 @@ export default function AboutPage({ user, onOpenLogin, selectedCategory, setSele
             </div>
           </section>
 
-          {/* Our People Section */}
+          {}
           <section style={{ padding: '64px 24px', borderTop: `1px solid ${t.borderLight}`, backgroundColor: 'transparent' }}>
             <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', maxWidth: '560px', margin: '0 auto 48px' }}>

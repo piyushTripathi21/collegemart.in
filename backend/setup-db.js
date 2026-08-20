@@ -21,7 +21,7 @@ async function setupDatabase() {
   console.log(`   Database: ${database}\n`);
 
   try {
-    // Connect to MySQL without database first
+
     console.log('🔗 Connecting to MySQL Server...');
     const connection = await mysql.createConnection({
       host: host,
@@ -31,18 +31,15 @@ async function setupDatabase() {
     });
     console.log('✅ Connected to MySQL Server\n');
 
-    // Read SQL file
     console.log('📄 Reading database.sql file...');
     const sqlFile = path.join(__dirname, 'database.sql');
     const sql = fs.readFileSync(sqlFile, 'utf8');
     console.log('✅ SQL file loaded\n');
 
-    // Execute SQL
     console.log('⚙️  Creating database and tables...');
     await connection.query(sql);
     console.log('✅ Database and tables created successfully\n');
 
-    // Verify setup
     console.log('🔍 Verifying setup...');
     const [users] = await connection.query('SELECT COUNT(*) as count FROM users');
     const [products] = await connection.query('SELECT COUNT(*) as count FROM products');
@@ -82,5 +79,4 @@ async function setupDatabase() {
   }
 }
 
-// Run setup
 setupDatabase();

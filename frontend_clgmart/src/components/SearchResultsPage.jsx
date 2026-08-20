@@ -26,7 +26,6 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
     setSelectedCategory(normalizedCategory)
     setSearchType(type)
 
-    // Legal content data
     const legalContent = {
       'Terms of Use': {
         title: 'Terms of Use',
@@ -64,7 +63,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
         const content = (item.content + ' ' + item.title).toLowerCase()
         
         if (content.includes(searchQuery)) {
-          // Find all matching sentences
+
           const sentences = item.content.split(/(?<=[.!?])\s+/)
           const matches = sentences.filter(sentence => 
             sentence.toLowerCase().includes(searchQuery)
@@ -81,7 +80,6 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
         }
       })
 
-      // Sort by match count
       results.sort((a, b) => b.matchCount - a.matchCount)
       return results
     }
@@ -89,11 +87,10 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
     const fetchData = async () => {
       setLoading(true)
       try {
-        // Search legal content
+
         const legalRes = searchLegalContent()
         setLegalResults(legalRes)
 
-        // Only search products if not filtering to legal only
         if (type !== 'legal') {
           try {
             const response = await axios.get('/api/search', {
@@ -145,7 +142,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
           Search results for "{query.get('q') || 'All'}"
         </h1>
         
-        {/* Legal Results */}
+        {}
         {legalResults.length > 0 && (
           <div style={{ marginBottom: '40px' }}>
             <h2 style={{ fontSize: '20px', marginBottom: '20px', color: '#002f34', fontWeight: '600' }}>
@@ -233,7 +230,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
           </div>
         )}
 
-        {/* Products Section */}
+        {}
         {searchType !== 'legal' && (
           <>
             {products.length > 0 && (
@@ -276,7 +273,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
             gap: '20px'
           }}>
             {products.map(product => {
-              // Skip invalid products
+
               if (!product || !product.id) {
                 console.warn('Invalid product encountered:', product)
                 return null
@@ -303,7 +300,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                   e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)'
                 }}
               >
-                {/* Product Image */}
+                {}
                 <div style={{
                   width: '100%',
                   height: '160px',
@@ -328,9 +325,9 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                   )}
                 </div>
 
-                {/* Product Info */}
+                {}
                 <div style={{ padding: '12px' }}>
-                  {/* Condition & Category Badges */}
+                  {}
                   <div style={{ marginBottom: '8px' }}>
                     <span style={{
                       display: 'inline-block',
@@ -369,7 +366,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                     </span>
                   </div>
 
-                  {/* Title */}
+                  {}
                   <h3 style={{
                     margin: '8px 0',
                     fontSize: '14px',
@@ -382,7 +379,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                     {product.title || 'Untitled Product'}
                   </h3>
 
-                  {/* Description */}
+                  {}
                   <p style={{
                     margin: '6px 0',
                     fontSize: '12px',
@@ -395,7 +392,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                     {product.description || 'No description available'}
                   </p>
 
-                  {/* Price */}
+                  {}
                   <div style={{
                     fontSize: '18px',
                     fontWeight: 'bold',
@@ -405,7 +402,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                     ₹ {product.price ? Number(product.price).toLocaleString('en-IN') : '0'}
                   </div>
 
-                  {/* Seller Info */}
+                  {}
                   <div style={{
                     fontSize: '12px',
                     color: '#888',
@@ -417,7 +414,7 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
                     {product.createdAt && <div>⏱ {getTimeAgo(product.createdAt)}</div>}
                   </div>
 
-                  {/* View Details Button */}
+                  {}
                   <button
                     onClick={(e) => {
                       e.stopPropagation()
@@ -455,7 +452,6 @@ export default function SearchResultsPage({ user, onOpenLogin, selectedCategory,
   )
 }
 
-// Helper functions
 function getConditionColor(condition) {
   const colors = {
     'Brand New': '#10b981',
@@ -473,8 +469,7 @@ function getTimeAgo(createdAt) {
     if (!createdAt) return 'Recently'
     const now = new Date()
     const created = new Date(createdAt)
-    
-    // Check if date is valid
+
     if (isNaN(created.getTime())) return 'Recently'
     
     const diff = now - created

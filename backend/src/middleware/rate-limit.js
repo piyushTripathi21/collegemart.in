@@ -49,7 +49,6 @@ export const messageLimiter = rateLimit({
   }
 });
 
-// Protect registry, verification, and coin creation endpoints
 export const sensitiveLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 mins
   max: 5,

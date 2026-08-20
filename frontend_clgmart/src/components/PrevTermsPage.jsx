@@ -15,7 +15,7 @@ export default function PrevTermsPage({ user, onOpenLogin }) {
       <main style={{ padding: '40px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Centered Header Layout matching reference UI */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <p style={{ fontSize: '13px', color: t.textMuted, marginBottom: '12px' }}>
               <Link to="/legal-privacy" style={{ color: t.textPrimary, textDecoration: 'none', fontWeight: 600 }}>
@@ -37,7 +37,7 @@ export default function PrevTermsPage({ user, onOpenLogin }) {
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)', 
             padding: '40px' 
           }}>
-            {/* Red Archived Alert Block */}
+            {}
             <div style={{ 
               backgroundColor: 'rgba(239, 68, 68, 0.08)', 
               borderLeft: '4px solid #ef4444', 

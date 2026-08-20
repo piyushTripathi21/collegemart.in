@@ -1,7 +1,4 @@
-// ============================================================
-// CollegeMart Admin Panel — API Routes
-// All routes are mounted at /api/admin in server.js
-// ============================================================
+
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -12,7 +9,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
   let categoriesCache = null;
   let categoriesCacheTime = 0;
 
-  // ── Helpers ─────────────────────────────────────────────────
   const escapeHtml = (text) => {
     return (text || '')
       .replace(/&/g, '&amp;')
@@ -60,7 +56,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { console.error('[ADMIN LOG ERROR]', e.message); }
   };
 
-  // ── Auth ────────────────────────────────────────────────────
   app.post('/api/admin/login', loginLimiter, async (req, res) => {
     try {
       const email = (req.body.email || '').trim().toLowerCase();
@@ -101,7 +96,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Dashboard ───────────────────────────────────────────────
   app.get('/api/admin/dashboard/stats', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -181,7 +175,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── User Management ─────────────────────────────────────────
   app.get('/api/admin/users', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -280,7 +273,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Product Management ──────────────────────────────────────
   app.get('/api/admin/products', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -382,7 +374,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Category Management ─────────────────────────────────────
   app.get('/api/admin/categories', authenticateAdmin, async (req, res) => {
     try {
       const now = Date.now();
@@ -439,7 +430,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Reports & Moderation ────────────────────────────────────
   app.get('/api/admin/reports', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -480,7 +470,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Transactions ────────────────────────────────────────────
   app.get('/api/admin/transactions', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -502,7 +491,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Offers ──────────────────────────────────────────────────
   app.get('/api/admin/offers', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -524,7 +512,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Messages Moderation ─────────────────────────────────────
   app.get('/api/admin/messages/:productId', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -551,7 +538,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Reviews ─────────────────────────────────────────────────
   app.get('/api/admin/reviews', authenticateAdmin, async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -582,7 +568,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Coins / Wallet ──────────────────────────────────────────
   app.get('/api/admin/coins/stats', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -607,7 +592,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Colleges ────────────────────────────────────────────────
   app.get('/api/admin/colleges', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -622,7 +606,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Announcements ───────────────────────────────────────────
   app.get('/api/admin/announcements', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -676,7 +659,7 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
       }
       const [users] = await conn.query(userQuery, qParams);
       conn.release();
-      // Send emails in background
+
       let sent = 0;
       for (const u of users) {
         try {
@@ -693,14 +676,13 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
             </div>`
           });
           sent++;
-        } catch (e) { /* skip individual failures */ }
+        } catch (e) {  }
       }
       logAction(req.admin.id, 'send_announcement_email', 'announcement', parseInt(req.params.id), `Sent to ${sent}/${users.length} users`, req.ip);
       res.json({ message: `Email sent to ${sent} of ${users.length} users` });
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Site Settings ───────────────────────────────────────────
   app.get('/api/admin/settings', authenticateAdmin, async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -728,7 +710,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Admin Access Control ────────────────────────────────────
   app.get('/api/admin/admins', authenticateAdmin, requireRole('super_admin'), async (req, res) => {
     try {
       const conn = await pool.getConnection();
@@ -786,7 +767,6 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Analytics ───────────────────────────────────────────────
   app.get('/api/admin/analytics/users', authenticateAdmin, async (req, res) => {
     try {
       const days = parseInt(req.query.days) || 30;
@@ -864,7 +844,7 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
       }
       conn.release();
       if (!rows.length) return res.json([]);
-      // Convert to CSV
+
       const headers = Object.keys(rows[0]);
       const csv = [headers.join(','), ...rows.map(r => headers.map(h => {
         const v = r[h];
@@ -878,11 +858,10 @@ export function setupAdminRoutes(app, pool, JWT_SECRET, emailTransporter, saniti
     } catch (e) { res.status(500).json({ error: e.message }); }
   });
 
-  // ── Sold product auto-hide cron ─────────────────────────────
   setInterval(async () => {
     try {
       const conn = await pool.getConnection();
-      // Get the hide days from settings
+
       const [settings] = await conn.query("SELECT setting_value FROM site_settings WHERE setting_key = 'sold_product_hide_days'");
       const hideDays = settings.length ? parseInt(settings[0].setting_value) || 7 : 7;
       const [result] = await conn.query(

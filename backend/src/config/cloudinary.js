@@ -1,8 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
 
-// Configure Cloudinary from environment variables
-// Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET in your .env
 const isCloudinaryConfigured = !!(
   process.env.CLOUDINARY_CLOUD_NAME &&
   process.env.CLOUDINARY_API_KEY &&
@@ -21,16 +19,9 @@ if (isCloudinaryConfigured) {
   console.warn('[CLOUDINARY] Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET in .env to enable.');
 }
 
-/**
- * Upload a local file to Cloudinary.
- * Falls back gracefully if Cloudinary is not configured (returns local path).
- * @param {string} localFilePath - Absolute path to the temp file on disk
- * @param {string} folder - Cloudinary folder (e.g. 'products', 'profiles')
- * @returns {Promise<string>} - The public URL of the uploaded image
- */
 export async function uploadToCloudinary(localFilePath, folder = 'general') {
   if (!isCloudinaryConfigured) {
-    // Return a local /uploads/ URL as fallback
+
     const filename = localFilePath.split(/[\\/]/).pop();
     return `/uploads/${filename}`;
   }
@@ -45,7 +36,6 @@ export async function uploadToCloudinary(localFilePath, folder = 'general') {
       ]
     });
 
-    // Delete temp file after successful upload
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
     }
@@ -53,25 +43,19 @@ export async function uploadToCloudinary(localFilePath, folder = 'general') {
     return result.secure_url;
   } catch (error) {
     console.error('[CLOUDINARY] Upload failed:', error);
-    // Fallback: keep local file and return local URL
+
     const filename = localFilePath.split(/[\\/]/).pop();
     return `/uploads/${filename}`;
   }
 }
 
-/**
- * Delete an image from Cloudinary by URL.
- * Extracts the public_id from the URL and deletes it.
- * Safe to call even if Cloudinary is not configured or URL is local.
- * @param {string} imageUrl - The Cloudinary secure_url of the image
- */
 export async function deleteFromCloudinary(imageUrl) {
   if (!isCloudinaryConfigured || !imageUrl || !imageUrl.includes('cloudinary.com')) {
     return; // Nothing to do for local files or if not configured
   }
 
   try {
-    // Extract public_id from URL: .../upload/v123456/collegemart/products/abc.jpg → collegemart/products/abc
+
     const urlParts = imageUrl.split('/upload/');
     if (urlParts.length < 2) return;
     const withVersion = urlParts[1]; // e.g. v1234567/collegemart/products/abc.jpg

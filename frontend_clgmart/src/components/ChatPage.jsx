@@ -6,7 +6,6 @@ import Footer from './Footer'
 import { useTheme } from '../context/ThemeContext'
 import { useThemeStyles } from '../context/useThemeStyles'
 
-
 export default function ChatPage({ user, onOpenLogin }) {
   const [conversations, setConversations] = useState([])
   const [loading, setLoading] = useState(true)
@@ -59,7 +58,7 @@ export default function ChatPage({ user, onOpenLogin }) {
           justifyContent: 'center',
           padding: '60px 20px'
         }}>
-          {/* Subtle decorative blobs */}
+          {}
           <div style={{
             position: 'absolute', top: '10%', right: '-150px',
             width: '450px', height: '450px', borderRadius: '50%',
@@ -115,7 +114,7 @@ export default function ChatPage({ user, onOpenLogin }) {
         overflow: 'hidden',
         padding: '40px 20px'
       }}>
-        {/* Subtle decorative blobs across the chat page */}
+        {}
         <div style={{
           position: 'absolute', top: '50px', right: '-150px',
           width: '450px', height: '450px', borderRadius: '50%',

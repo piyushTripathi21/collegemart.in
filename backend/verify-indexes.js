@@ -1,9 +1,5 @@
 import mysql from 'mysql2/promise';
 
-/**
- * Verifies and applies indexes to the MySQL database if they do not already exist.
- * @param {import('mysql2/promise').Pool} pool - The MySQL connection pool
- */
 export async function verifyAndCreateIndexes(pool) {
   const indexes = [
     { table: 'products', name: 'idx_products_category', definition: '(category)' },
@@ -36,7 +32,6 @@ export async function verifyAndCreateIndexes(pool) {
 
     console.log(`[INDEX CHECK] Checking indexes for database: ${dbName}`);
 
-    // Create token_blacklist table if not exists
     await connection.query(`
       CREATE TABLE IF NOT EXISTS token_blacklist (
         token VARCHAR(500) PRIMARY KEY,

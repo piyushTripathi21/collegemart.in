@@ -40,8 +40,6 @@ import ResetPasswordPage from './components/ResetPasswordPage'
 import VerifyEmailPage from './components/VerifyEmailPage'
 import ContactPage from './components/ContactPage'
 
-
-// Admin panel views
 import AdminLogin from './components/admin/AdminLogin'
 import AdminLayout from './components/admin/AdminLayout'
 import AdminDashboard from './components/admin/AdminDashboard'
@@ -71,12 +69,11 @@ const AppContent = () => {
   const [user, setUser] = useState(null)
   const [showLoginModal, setShowLoginModal] = useState(false)
   const freshRecommendationsRef = useRef(null)
-  // Show splash only once per browser session
+
   const [showSplash, setShowSplash] = useState(() => !sessionStorage.getItem('splashShown'))
 
   const { showToast } = useToast()
 
-  // Listen for online/offline status
   useEffect(() => {
     const handleOnline = () => {
       showToast('Your internet connection has been restored.', 'success', 3000)
@@ -94,7 +91,6 @@ const AppContent = () => {
     }
   }, [showToast])
 
-  // Listen for global API errors dispatched by the axios interceptor
   useEffect(() => {
     const handleApiError = (e) => {
       const { code, message } = e.detail || {}
@@ -108,7 +104,6 @@ const AppContent = () => {
     return () => window.removeEventListener('api:error', handleApiError)
   }, [showToast])
 
-  // Load user from localStorage on mount
   useEffect(() => {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
@@ -119,11 +114,10 @@ const AppContent = () => {
       }
     }
 
-    // Listen for profile updates
     const handleProfileUpdate = () => {
       const updatedUser = localStorage.getItem('user')
       if (updatedUser) {
-        try { setUser(JSON.parse(updatedUser)) } catch { /* ignore */ }
+        try { setUser(JSON.parse(updatedUser)) } catch {  }
       }
     }
 
@@ -173,7 +167,7 @@ const AppContent = () => {
               overflow: 'hidden',
               minHeight: '100vh',
             }}>
-              {/* Subtle decorative blobs across the home page */}
+              {}
               <div style={{
                 position: 'absolute', top: '100px', right: '-150px',
                 width: '600px', height: '600px', borderRadius: '50%',
@@ -403,7 +397,7 @@ const AppContent = () => {
           element={<ContactPage user={user} onOpenLogin={openLoginModal} />}
         />
 
-        {/* Admin panel routes */}
+        {}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
@@ -432,7 +426,7 @@ const AppContent = () => {
 }
 
 export default function App() {
-  // Only wrap with GoogleOAuthProvider if a valid Client ID is configured
+
   if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID.trim() !== '') {
     return (
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
@@ -440,7 +434,6 @@ export default function App() {
       </GoogleOAuthProvider>
     )
   }
-  
-  // If no Client ID, render without GoogleOAuthProvider (Google login will be disabled)
+
   return <AppContent />
 }

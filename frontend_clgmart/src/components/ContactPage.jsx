@@ -14,7 +14,7 @@ export default function ContactPage({ user, onOpenLogin }) {
           maxWidth: '560px',
         }}>
 
-          {/* Header */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <div style={{
               display: 'inline-flex',
@@ -52,10 +52,10 @@ export default function ContactPage({ user, onOpenLogin }) {
             </p>
           </div>
 
-          {/* Contact Cards */}
+          {}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-            {/* Phone Card */}
+            {}
             <a
               href="tel:+919755609882"
               style={{ textDecoration: 'none' }}
@@ -129,7 +129,7 @@ export default function ContactPage({ user, onOpenLogin }) {
               </div>
             </a>
 
-            {/* Email Card */}
+            {}
             <a
               href="mailto:collegemart.dev@gmail.com"
               style={{ textDecoration: 'none' }}
@@ -205,7 +205,7 @@ export default function ContactPage({ user, onOpenLogin }) {
 
           </div>
 
-          {/* Back to Help */}
+          {}
           <div style={{ textAlign: 'center', marginTop: '36px' }}>
             <Link
               to="/help-center"

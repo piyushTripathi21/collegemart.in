@@ -48,7 +48,6 @@ export default function AdminDashboard() {
     )
   }
 
-  // Calculate SVG line path helpers for User growth
   const generateLinePath = (data, width = 500, height = 150) => {
     if (!data || data.length === 0) return ''
     const maxVal = Math.max(...data.map(d => d.count), 5)
@@ -76,7 +75,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Page Title */}
+      {}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Dashboard Overview</h1>
@@ -87,9 +86,9 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Grid Stats Cards */}
+      {}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {/* Users Card */}
+        {}
         <div className="p-5 rounded-xl border transition-all shadow-sm group hover:border-teal-500/30" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="flex justify-between items-start">
             <div>
@@ -109,7 +108,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Listings Card */}
+        {}
         <div className="p-5 rounded-xl border transition-all shadow-sm group hover:border-teal-500/30" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="flex justify-between items-start">
             <div>
@@ -130,7 +129,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Financial Revenue Card */}
+        {}
         <div className="p-5 rounded-xl border transition-all shadow-sm group hover:border-teal-500/30" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="flex justify-between items-start">
             <div>
@@ -148,7 +147,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Safety Reports Card */}
+        {}
         <div className="p-5 rounded-xl border transition-all shadow-sm group hover:border-teal-500/30" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="flex justify-between items-start">
             <div>
@@ -174,7 +173,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Platform activity metrics */}
+      {}
       <div className="p-5 rounded-xl border flex flex-wrap gap-6 items-center justify-around" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="text-center">
           <p className="text-xs uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>Total Chat Messages</p>
@@ -197,9 +196,9 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Charts + Distribution */}
+      {}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* User signups curve */}
+        {}
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>User Signup Growth (30 days)</h4>
           {charts?.userGrowth?.length > 1 ? (
@@ -229,7 +228,7 @@ export default function AdminDashboard() {
           )}
         </div>
 
-        {/* Listing growth curve */}
+        {}
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>Product Listing Activity (30 days)</h4>
           {charts?.productGrowth?.length > 1 ? (
@@ -260,9 +259,9 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Top segments grids */}
+      {}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Top Colleges */}
+        {}
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>Active Colleges</h4>
           {stats?.topColleges?.length > 0 ? (
@@ -288,7 +287,7 @@ export default function AdminDashboard() {
           )}
         </div>
 
-        {/* Top Categories */}
+        {}
         <div className="p-5 rounded-xl border" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <h4 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-primary)' }}>Top Categories</h4>
           {stats?.topCategories?.length > 0 ? (

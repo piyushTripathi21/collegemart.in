@@ -36,7 +36,7 @@ export default function SellPage({ user, onOpenLogin }) {
         fontFamily: 'inherit',
         transition: 'background 0.3s ease, color 0.3s ease'
       }}>
-        {/* Subtle decorative blobs across the sell page */}
+        {}
         <div style={{
           position: 'absolute', top: '100px', right: '-150px',
           width: '600px', height: '600px', borderRadius: '50%',
@@ -78,7 +78,6 @@ export default function SellPage({ user, onOpenLogin }) {
       return
     }
 
-    // File size validation (Issue #13)
     const MAX_SIZE = 5 * 1024 * 1024;
     const oversizedFile = files.find(file => file.size > MAX_SIZE);
     if (oversizedFile) {
@@ -158,7 +157,7 @@ export default function SellPage({ user, onOpenLogin }) {
       navigate('/')
     } catch (err) {
       console.error('Error saving product:', err, err.response?.data)
-      // Show more specific server message when available
+
       const serverMsg = err.response?.data?.error || err.response?.data || null
       const status = err.response?.status
       if (status === 401) {
@@ -183,7 +182,7 @@ export default function SellPage({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the sell page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',
@@ -213,7 +212,7 @@ export default function SellPage({ user, onOpenLogin }) {
             </p>
 
             <form onSubmit={handleSubmit}>
-              {/* Image Upload */}
+              {}
               <div style={{
                 backgroundColor: t.cardBg,
                 border: `1px solid ${t.border}`,
@@ -269,33 +268,7 @@ export default function SellPage({ user, onOpenLogin }) {
                 
                 <input
                   type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageChange}
-                  style={{
-                    width: '100%',
-                    padding: '16px',
-                    border: `2px dashed ${t.accent}`,
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    backgroundColor: t.cardBgAlt,
-                    color: t.textPrimary
-                  }}
-                  required
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
-                  <p style={{ fontSize: '12px', color: t.textMuted, margin: 0 }}>
-                    Supported formats: JPG, PNG, GIF. Max size: 5MB
-                  </p>
-                  <p style={{ fontSize: '12px', margin: 0, fontWeight: '600',
-                    color: images.length === 0 ? '#dc2626' : images.length < 2 ? '#f59e0b' : '#16a34a' }}>
-                    {images.length === 0 ? '⚠ No images selected' : images.length < 2 ? `⚠ ${images.length}/2 minimum — add ${2 - images.length} more` : `✓ ${images.length} image${images.length > 1 ? 's' : ''} selected`}
-                  </p>
-                </div>
-              </div>
-
-              {/* Product Details */}
+                  accept="image}
               <div style={{
                 backgroundColor: t.cardBg,
                 border: `1px solid ${t.border}`,
@@ -306,7 +279,7 @@ export default function SellPage({ user, onOpenLogin }) {
               }}>
                 <h3 style={{ marginTop: 0, marginBottom: '20px', color: t.textPrimary }}>Product Details</h3>
 
-                 {/* Title */}
+                 {}
                 <div style={{ marginBottom: '16px' }}>
                   <label style={{ display: 'block', marginBottom: '6px', fontWeight: '600', fontSize: '14px', color: t.textSecondary }}>
                     Product Title *
@@ -332,7 +305,7 @@ export default function SellPage({ user, onOpenLogin }) {
                   />
                 </div>
 
-                {/* Description */}
+                {}
                 <div style={{ marginBottom: '16px' }}>
                   <label style={{ display: 'block', marginBottom: '6px', fontWeight: '600', fontSize: '14px', color: t.textSecondary }}>
                     Description
@@ -358,7 +331,7 @@ export default function SellPage({ user, onOpenLogin }) {
                   />
                 </div>
 
-                {/* Price and Condition */}
+                {}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                   <div>
                     <label style={{ display: 'block', marginBottom: '6px', fontWeight: '600', fontSize: '14px', color: t.textSecondary }}>
@@ -414,7 +387,7 @@ export default function SellPage({ user, onOpenLogin }) {
                   </div>
                 </div>
 
-                {/* Category */}
+                {}
                 <div>
                   <label style={{ display: 'block', marginBottom: '6px', fontWeight: '600', fontSize: '14px', color: t.textSecondary }}>
                     Category
@@ -443,7 +416,7 @@ export default function SellPage({ user, onOpenLogin }) {
                 </div>
               </div>
 
-              {/* Seller Info */}
+              {}
               <div style={{
                 backgroundColor: t.cardBg,
                 border: `1px solid ${t.border}`,
@@ -504,7 +477,7 @@ export default function SellPage({ user, onOpenLogin }) {
                 </div>
               </div>
 
-              {/* Error Message */}
+              {}
               {error && (
                 <div style={{
                   backgroundColor: '#fee2e2',
@@ -518,7 +491,7 @@ export default function SellPage({ user, onOpenLogin }) {
                 </div>
               )}
 
-              {/* Success Message */}
+              {}
               {success && (
                 <div style={{
                   backgroundColor: '#dcfce7',
@@ -532,7 +505,7 @@ export default function SellPage({ user, onOpenLogin }) {
                 </div>
               )}
 
-              {/* Buttons */}
+              {}
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
                 <button
                   type="submit"

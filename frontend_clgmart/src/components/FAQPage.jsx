@@ -27,7 +27,7 @@ export default function FAQPage({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the faq page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',
@@ -48,7 +48,7 @@ export default function FAQPage({ user, onOpenLogin }) {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar user={user} onOpenLogin={onOpenLogin} />
 
-        {/* Page Header */}
+        {}
         <section style={{ backgroundColor: 'transparent', borderBottom: `1px solid ${t.border}`, padding: '48px 24px' }}>
           <div style={{ maxWidth: '720px', margin: '0 auto' }}>
             <p style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: t.tagText, marginBottom: '12px' }}>Support</p>
@@ -59,7 +59,7 @@ export default function FAQPage({ user, onOpenLogin }) {
           </div>
         </section>
 
-      {/* FAQ Accordion */}
+      {}
       <main style={{ padding: '48px 24px' }}>
         <div style={{ maxWidth: '720px', margin: '0 auto' }}>
           <div style={{ border: `1px solid ${t.border}`, borderRadius: '8px', overflow: 'hidden' }}>
@@ -81,7 +81,7 @@ export default function FAQPage({ user, onOpenLogin }) {
             ))}
           </div>
 
-          {/* CTA */}
+          {}
           <div style={{ marginTop: '40px', padding: '28px', backgroundColor: t.cardBgAlt, border: `1px solid ${t.border}`, borderRadius: '8px', textAlign: 'center' }}>
             <p style={{ fontSize: '15px', color: t.textSecondary, fontWeight: 600, margin: '0 0 8px' }}>Still have questions?</p>
             <p style={{ fontSize: '14px', color: t.textMuted, margin: '0 0 20px' }}>Visit our Help Center for detailed guides and support resources.</p>

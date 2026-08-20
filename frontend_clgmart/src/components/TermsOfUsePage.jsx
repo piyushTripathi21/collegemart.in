@@ -28,7 +28,7 @@ export default function TermsOfUsePage({ user, onOpenLogin }) {
       <main style={{ padding: '40px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Centered Header Layout matching reference UI */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <p style={{ fontSize: '13px', color: t.textMuted, marginBottom: '12px' }}>
               <Link to="/legal-privacy" style={{ color: t.textPrimary, textDecoration: 'none', fontWeight: 600 }}>Legal & Privacy information</Link>
@@ -47,7 +47,7 @@ export default function TermsOfUsePage({ user, onOpenLogin }) {
             padding: '40px' 
           }}>
             
-            {/* Lavender Notice Block */}
+            {}
             <div style={{ 
               backgroundColor: theme === 'dark' ? 'rgba(168, 85, 247, 0.12)' : '#FAF5FF', 
               borderLeft: '4px solid #A855F7', 

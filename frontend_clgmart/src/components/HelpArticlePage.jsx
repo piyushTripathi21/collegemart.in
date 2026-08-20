@@ -24,7 +24,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
       <main style={{ padding: '40px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Centered Header Layout matching reference UI */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <p style={{ fontSize: '13px', color: t.textMuted, marginBottom: '12px' }}>
               <Link to="/help-center" style={{ color: t.textPrimary, textDecoration: 'none', fontWeight: 600 }}>India Help Center</Link>
@@ -39,11 +39,11 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '28px' }}>
 
-            {/* Sidebar */}
+            {}
             <aside style={{ borderRadius: '12px', backgroundColor: t.cardBg, border: `1px solid ${t.border}`, padding: '24px', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)', alignSelf: 'start' }}>
               <h2 style={{ fontSize: '14px', color: t.textPrimary, marginBottom: '16px', fontWeight: 700 }}>Articles in this section</h2>
 
-              {/* Active item — Guidelines */}
+              {}
               <Link
                 to="/help-center/law-enforcement"
                 onMouseEnter={() => setHoveredItem('law')}
@@ -69,7 +69,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
                 Guidelines Law Enforcement Agencies
               </Link>
 
-              {/* Privacy Policy link */}
+              {}
               <Link
                 to="/privacy-policy"
                 onMouseEnter={() => setHoveredItem('privacy')}
@@ -97,7 +97,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
               </Link>
             </aside>
 
-            {/* Article Content */}
+            {}
             <article style={{ 
               borderRadius: '16px', 
               backgroundColor: t.cardBg, 
@@ -117,7 +117,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
                 </p>
               </section>
 
-              {/* Legal Compliance Notice Card */}
+              {}
               <div style={{ 
                 backgroundColor: theme === 'dark' ? 'rgba(14, 165, 233, 0.12)' : '#F0F9FF', 
                 borderLeft: '4px solid #0ea5e9', 
@@ -176,7 +176,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
                 </p>
               </section>
 
-              {/* Helpful footer */}
+              {}
               <footer style={{ borderTop: `1px solid ${t.border}`, paddingTop: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
                 {helpfulVote === null ? (
                   <>
@@ -247,7 +247,7 @@ export default function HelpArticlePage({ user, onOpenLogin }) {
                     backgroundColor: helpfulVote === 'yes' ? 'rgba(35,229,219,0.1)' : 'rgba(239,68,68,0.08)',
                     border: `1px solid ${helpfulVote === 'yes' ? 'rgba(35,229,219,0.3)' : 'rgba(239,68,68,0.25)'}`,
                   }}>
-                    {/* Icon removed */}
+                    {}
                     <div>
                       <div style={{ fontWeight: '700', fontSize: '14px', color: helpfulVote === 'yes' ? t.accentText : '#ef4444' }}>
                         {helpfulVote === 'yes' ? 'Thank you for your feedback!' : 'Thanks for letting us know!'}

@@ -99,7 +99,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
   return (
     <section style={{ padding: '40px 20px', background: 'transparent' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Header row: title left, view more right */}
+        {}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -169,7 +169,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                 e.currentTarget.style.borderColor = themeStyles.borderClr
               }}
             >
-              {/* Product Image */}
+              {}
               <div style={{
                 width: '100%',
                 height: '200px',
@@ -190,9 +190,9 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                 )}
               </div>
 
-              {/* Product Details */}
+              {}
               <div style={{ padding: '15px' }}>
-                {/* Condition & Status Badges */}
+                {}
                 <div style={{ marginBottom: '8px' }}>
                   <div style={{
                     display: 'inline-block',
@@ -220,7 +220,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   </div>
                 </div>
 
-                {/* Category Badge */}
+                {}
                 <div style={{
                   display: 'inline-block',
                   marginLeft: '8px',
@@ -235,7 +235,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   {product.category}
                 </div>
 
-                {/* Title */}
+                {}
                 <h3 style={{
                   margin: '10px 0',
                   fontSize: '16px',
@@ -248,7 +248,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   {product.title}
                 </h3>
 
-                {/* Description */}
+                {}
                 {product.description && (
                   <p style={{
                     margin: '8px 0',
@@ -263,7 +263,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   </p>
                 )}
 
-                {/* Price */}
+                {}
                 <div style={{
                   fontSize: '20px',
                   fontWeight: 'bold',
@@ -273,7 +273,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   ₹ {product.price?.toLocaleString('en-IN') || 0}
                 </div>
 
-                {/* Seller Info */}
+                {}
                 <div style={{
                   fontSize: '12px',
                   color: themeStyles.textMuted,
@@ -286,7 +286,7 @@ const FreshRecommendations = forwardRef(({ selectedCategory, selectedCollege }, 
                   <div>⏱ {getTimeAgo(product.createdAt)}</div>
                 </div>
 
-                {/* Action Button */}
+                {}
                 <button
                   onClick={(e) => {
                     e.stopPropagation()
@@ -322,7 +322,6 @@ FreshRecommendations.displayName = 'FreshRecommendations'
 
 export default FreshRecommendations
 
-// Helper functions
 function getConditionColor(condition) {
   const colors = {
     'Brand New': '#10b981',

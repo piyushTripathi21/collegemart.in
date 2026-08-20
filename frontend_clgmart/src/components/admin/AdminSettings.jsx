@@ -19,7 +19,7 @@ export default function AdminSettings() {
       try {
         setLoading(true)
         const res = await adminSettingsAPI.getAll()
-        // Override default state with loaded DB settings
+
         setSettings(prev => ({
           ...prev,
           ...res.data
@@ -62,23 +62,23 @@ export default function AdminSettings() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>System Settings</h1>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Configure global marketplace attributes, restrictions, and financial reward balances.</p>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Settings Panel */}
+      {}
       <form onSubmit={handleSave} className="p-6 rounded-xl border space-y-6 max-w-2xl shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="space-y-4 text-sm">
-          {/* Site name */}
+          {}
           <div>
             <label className="block text-xs uppercase font-bold tracking-wider mb-1.5" style={{ color: 'var(--text-muted)' }}>
               Marketplace Name
@@ -93,7 +93,7 @@ export default function AdminSettings() {
             />
           </div>
 
-          {/* Maintenance Mode */}
+          {}
           <div>
             <label className="block text-xs uppercase font-bold tracking-wider mb-1.5" style={{ color: 'var(--text-muted)' }}>
               Maintenance Mode
@@ -109,7 +109,7 @@ export default function AdminSettings() {
             </select>
           </div>
 
-          {/* Email Restrictions */}
+          {}
           <div>
             <label className="block text-xs uppercase font-bold tracking-wider mb-1.5" style={{ color: 'var(--text-muted)' }}>
               Allowed email domains (comma separated)

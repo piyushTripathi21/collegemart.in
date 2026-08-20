@@ -8,7 +8,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    // prevent Vite from watching or attempting to transform files in uploads/
+
     watch: {
       ignored: ['**/uploads/**']
     },

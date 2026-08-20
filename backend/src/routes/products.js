@@ -82,7 +82,6 @@ const productListSelect = `
   LEFT JOIN reviews r ON p.id = r.product_id
 `;
 
-// Helper to unlink local files on error/rollback
 const cleanupFiles = (filesList) => {
   if (!filesList) return;
   const files = Array.isArray(filesList) ? filesList : [filesList];
@@ -97,7 +96,6 @@ const cleanupFiles = (filesList) => {
   }
 };
 
-// Get all products with pagination
 router.get('/', productListLimiter, async (req, res) => {
   try {
     const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -144,7 +142,6 @@ router.get('/', productListLimiter, async (req, res) => {
   }
 });
 
-// Get featured products with pagination
 router.get('/featured/all', productListLimiter, async (req, res) => {
   try {
     const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -175,7 +172,6 @@ router.get('/featured/all', productListLimiter, async (req, res) => {
   }
 });
 
-// Search products with pagination
 router.get('/search', searchLimiter, async (req, res) => {
   try {
     const { q } = req.query;
@@ -221,7 +217,6 @@ router.get('/search', searchLimiter, async (req, res) => {
   }
 });
 
-// Get products by category with pagination
 router.get('/category/:category', productListLimiter, async (req, res) => {
   try {
     const category = req.params.category;
@@ -254,7 +249,6 @@ router.get('/category/:category', productListLimiter, async (req, res) => {
   }
 });
 
-// Get product by ID
 router.get('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
@@ -289,7 +283,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create product without upload
 router.post('/', authenticateToken, validateProductInput, async (req, res) => {
   try {
     const title = req.body.title.trim();
@@ -315,7 +308,6 @@ router.post('/', authenticateToken, validateProductInput, async (req, res) => {
   }
 });
 
-// Upload product with images
 router.post('/upload', authenticateToken, upload.fields([
   { name: 'images', maxCount: 6 },
   { name: 'image', maxCount: 1 }
@@ -335,7 +327,6 @@ router.post('/upload', authenticateToken, upload.fields([
     const category = req.body.category;
     const location = req.body.location.trim();
 
-    // Upload all images — Cloudinary if configured, else local disk
     const uploadedUrls = await Promise.all(allFiles.map(f => uploadToCloudinary(f.path, 'products')));
 
     const imageUrl = uploadedUrls.length > 0 ? uploadedUrls[0] : null;
@@ -372,7 +363,6 @@ router.post('/upload', authenticateToken, upload.fields([
   }
 });
 
-// Update product
 router.put('/:id', authenticateToken, validateProductInput, async (req, res) => {
   try {
     const title = req.body.title.trim();
@@ -397,7 +387,6 @@ router.put('/:id', authenticateToken, validateProductInput, async (req, res) => 
       return res.status(403).json({ error: 'Forbidden' });
     }
 
-    // UPDATE BLOCKED ON SOLD FIX: Check if already sold
     if (ownedRows[0].sold) {
       connection.release();
       return res.status(400).json({ error: 'Cannot update a product after it has been marked as sold' });
@@ -415,7 +404,6 @@ router.put('/:id', authenticateToken, validateProductInput, async (req, res) => 
   }
 });
 
-// Delete product with disk unlinking
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const connection = await pool.getConnection();
@@ -431,7 +419,6 @@ router.delete('/:id', authenticateToken, async (req, res) => {
 
     const [extraImages] = await connection.query('SELECT image_url FROM product_images WHERE product_id = ?', [req.params.id]);
 
-    // Clean up from Cloudinary (if used) or local disk
     const allImageUrls = [
       ownedRows[0].image_url,
       ...extraImages.map(img => img.image_url)
@@ -456,7 +443,6 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// Mark sold with transactions
 router.post('/:id/mark-sold', authenticateToken, async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -479,7 +465,6 @@ router.post('/:id/mark-sold', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Product already marked as sold' });
     }
 
-    // MULTI-UPDATE TRANSACTION FIX: Atomic updates of sold status and coin balance
     await connection.query('UPDATE products SET sold = 1, sold_at = NOW() WHERE id = ?', [req.params.id]);
     await connection.query('UPDATE users SET coins = IFNULL(coins, 0) + 10 WHERE id = ?', [req.user.id]);
     
@@ -501,7 +486,6 @@ router.post('/:id/mark-sold', authenticateToken, async (req, res) => {
   }
 });
 
-// Product reviews with transactions
 router.post('/:id/reviews', authenticateToken, reviewLimiter, async (req, res) => {
   const rating = Number(req.body.rating);
   const comment = (req.body.comment || '').trim();
@@ -545,7 +529,6 @@ router.post('/:id/reviews', authenticateToken, reviewLimiter, async (req, res) =
   }
 });
 
-// Offers and negotiation
 router.post('/:id/offers', authenticateToken, async (req, res) => {
   const amount = Number(req.body.amount);
   const buyerMessage = (req.body.message || '').trim();
@@ -570,7 +553,6 @@ router.post('/:id/offers', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Cannot make an offer on your own product' });
     }
 
-    // DUPLICATE OFFER RACE CONDITION FIX: prevent double active offers
     const [existing] = await connection.query(
       'SELECT id FROM offers WHERE product_id = ? AND buyer_id = ? AND status = "pending"',
       [req.params.id, req.user.id]
@@ -596,7 +578,6 @@ router.post('/:id/offers', authenticateToken, async (req, res) => {
   }
 });
 
-// Get product reviews with pagination
 router.get('/:id/reviews', async (req, res) => {
   try {
     const productId = req.params.id;
@@ -635,7 +616,6 @@ router.get('/:id/reviews', async (req, res) => {
   }
 });
 
-// Get product offers with pagination (only seller or buyer can view)
 router.get('/:id/offers', authenticateToken, async (req, res) => {
   try {
     const productId = req.params.id;
@@ -648,8 +628,7 @@ router.get('/:id/offers', authenticateToken, async (req, res) => {
     }
 
     const connection = await pool.getConnection();
-    
-    // Check access first: must be the product seller OR must have made an offer on it (or support/admin)
+
     const [products] = await connection.query('SELECT user_id FROM products WHERE id = ?', [productId]);
     if (products.length === 0) {
       connection.release();
@@ -661,7 +640,7 @@ router.get('/:id/offers', authenticateToken, async (req, res) => {
     let queryParams = [productId];
 
     if (sellerId !== req.user.id) {
-      // Buyer can only see their own offers
+
       whereClause += ' AND buyer_id = ?';
       queryParams.push(req.user.id);
     }

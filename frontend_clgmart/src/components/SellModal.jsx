@@ -50,16 +50,14 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
       formData.append('phone', phone)
       formData.append('image', image)
 
-      // console.log('Uploading product with user_id:', user.id)
       const response = await axios.post('/api/products/upload', formData, {
         headers: {
           ...(user?.token ? { Authorization: `Bearer ${user.token}` } : {})
         }
       })
 
-      // console.log('Upload successful, response:', response.data)
       alert('Product listed successfully! Check Fresh Recommendations.')
-      // Reset form
+
       setTitle('')
       setDescription('')
       setPrice('')
@@ -67,10 +65,9 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
       setCategory('Books')
       setImage(null)
       setPreview(null)
-      
-      // Call success callback to trigger refresh
+
       if (onUploadSuccess) {
-        // console.log('Calling onUploadSuccess callback')
+
         onUploadSuccess()
       }
       
@@ -114,7 +111,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
         </h2>
 
         <form onSubmit={handleSubmit}>
-          {/* Image Upload */}
+          {}
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
               Product Image *
@@ -135,20 +132,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{
-                width: '100%',
-                padding: '10px',
-                border: '2px dashed #0ea5e9',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-              required
-            />
-          </div>
-
-          {/* Product Title */}
+              accept="image}
           <input
             type="text"
             placeholder="Product Title *"
@@ -166,7 +150,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             required
           />
 
-          {/* Price and Condition */}
+          {}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
             <input
               type="number"
@@ -198,7 +182,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             </select>
           </div>
 
-          {/* Category */}
+          {}
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -220,7 +204,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             <option>Others</option>
           </select>
 
-          {/* Description */}
+          {}
           <textarea
             placeholder="Product Description (Details about condition, usage, etc.)"
             value={description}
@@ -237,7 +221,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             }}
           />
 
-          {/* Contact Details */}
+          {}
           <input
             type="text"
             placeholder="Your Name"
@@ -284,7 +268,7 @@ export default function SellModal({ isOpen, onClose, user, onUploadSuccess }) {
             </div>
           )}
 
-          {/* Buttons */}
+          {}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             <button
               type="submit"

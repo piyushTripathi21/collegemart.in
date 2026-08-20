@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // If already logged in, redirect to dashboard
+
     const token = localStorage.getItem('adminToken')
     if (token) {
       navigate('/admin')
@@ -40,11 +40,11 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden font-sans select-none" style={{ background: 'var(--bg-gradient)' }}>
-      {/* Background ambient glows */}
+      {}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
 
-      {/* Login Card */}
+      {}
       <div className="w-full max-w-md backdrop-blur-md border rounded-2xl shadow-2xl p-8 z-10 animate-fade-in" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
         <div className="flex flex-col items-center mb-8">
           <img

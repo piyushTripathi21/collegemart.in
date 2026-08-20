@@ -1,22 +1,4 @@
 #!/usr/bin/env node
-/**
- * CollegeMart — Automated Database Backup Script
- * ─────────────────────────────────────────────────
- * Creates a compressed, timestamped mysqldump backup of the database.
- *
- * Usage:
- *   node backup-db.js
- *
- * Schedule with cron (daily at 2am):
- *   0 2 * * * cd /path/to/collegemart && node backup-db.js >> /var/log/collegemart-backup.log 2>&1
- *
- * Or with PM2 (add to ecosystem.config.js):
- *   { name: 'backup', script: 'backup-db.js', cron_restart: '0 2 * * *', autorestart: false }
- *
- * Options (via environment variables):
- *   BACKUP_DIR        — Directory to store backups (default: ./backups)
- *   BACKUP_RETENTION_DAYS — Days to keep old backups (default: 30)
- */
 
 import { execSync, exec } from 'child_process';
 import fs from 'fs';
@@ -28,7 +10,6 @@ dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// ─── Config ─────────────────────────────────────────────────────────────────
 const DB_HOST     = process.env.DB_HOST     || 'localhost';
 const DB_USER     = process.env.DB_USER     || 'root';
 const DB_PASSWORD = process.env.DB_PASSWORD || '';
@@ -37,27 +18,21 @@ const DB_PORT     = process.env.DB_PORT     || '3306';
 const BACKUP_DIR  = process.env.BACKUP_DIR  || path.join(__dirname, 'backups');
 const RETENTION_DAYS = parseInt(process.env.BACKUP_RETENTION_DAYS || '30', 10);
 
-// ─── Validation ──────────────────────────────────────────────────────────────
 if (!DB_NAME || !DB_USER) {
   console.error('[BACKUP] ❌ DB_NAME and DB_USER must be set in .env');
   process.exit(1);
 }
 
-// ─── Ensure backup directory exists ─────────────────────────────────────────
 if (!fs.existsSync(BACKUP_DIR)) {
   fs.mkdirSync(BACKUP_DIR, { recursive: true });
   console.log(`[BACKUP] Created backup directory: ${BACKUP_DIR}`);
 }
 
-// ─── Generate timestamped filename ───────────────────────────────────────────
 const now = new Date();
 const timestamp = now.toISOString().replace(/[:.]/g, '-').replace('T', '_').split('Z')[0];
 const filename  = `${DB_NAME}_${timestamp}.sql`;
 const gzFile    = path.join(BACKUP_DIR, `${filename}.gz`);
 
-// ─── Build mysqldump command ──────────────────────────────────────────────────
-// Uses -p with no space to pass password inline (standard mysqldump format).
-// Pipes through gzip for compressed output.
 const passwordArg = DB_PASSWORD ? `-p${DB_PASSWORD}` : '';
 const dumpCmd = [
   `mysqldump`,
@@ -73,7 +48,6 @@ const dumpCmd = [
   `| gzip > "${gzFile}"`
 ].filter(Boolean).join(' ');
 
-// ─── Run backup ──────────────────────────────────────────────────────────────
 console.log(`[BACKUP] Starting backup of database '${DB_NAME}'...`);
 console.log(`[BACKUP] Output: ${gzFile}`);
 
@@ -85,12 +59,11 @@ try {
   console.log(`[BACKUP] ✅ Backup complete — ${filename}.gz (${sizeKb} KB)`);
 } catch (err) {
   console.error('[BACKUP] ❌ mysqldump failed:', err.message);
-  // Clean up empty/partial file
+
   if (fs.existsSync(gzFile)) fs.unlinkSync(gzFile);
   process.exit(1);
 }
 
-// ─── Retention: delete backups older than RETENTION_DAYS ─────────────────────
 console.log(`[BACKUP] Cleaning up backups older than ${RETENTION_DAYS} days...`);
 const cutoff = Date.now() - RETENTION_DAYS * 24 * 60 * 60 * 1000;
 let deleted = 0;

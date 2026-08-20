@@ -19,7 +19,7 @@ export default function ProductSkeleton({ count = 6 }) {
             animationDelay: `${i * 0.1}s`
           }}
         >
-          {/* Image skeleton */}
+          {}
           <div style={{
             width: '100%',
             height: '200px',
@@ -30,9 +30,9 @@ export default function ProductSkeleton({ count = 6 }) {
             borderRadius: '8px 8px 0 0'
           }} />
 
-          {/* Content skeleton */}
+          {}
           <div style={{ padding: '16px' }}>
-            {/* Price */}
+            {}
             <div style={{
               width: '80px',
               height: '22px',
@@ -43,7 +43,7 @@ export default function ProductSkeleton({ count = 6 }) {
               marginBottom: '10px'
             }} />
 
-            {/* Badges */}
+            {}
             <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
               <div style={{
                 width: '60px',
@@ -63,7 +63,7 @@ export default function ProductSkeleton({ count = 6 }) {
               }} />
             </div>
 
-            {/* Title */}
+            {}
             <div style={{
               width: '90%',
               height: '16px',

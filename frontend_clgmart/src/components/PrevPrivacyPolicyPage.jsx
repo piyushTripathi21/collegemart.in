@@ -55,7 +55,7 @@ export default function PrevPrivacyPolicyPage({ user, onOpenLogin }) {
       <main style={{ padding: '40px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
-          {/* Centered Header Layout matching reference UI */}
+          {}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <p style={{ fontSize: '13px', color: t.textMuted, marginBottom: '12px' }}>
               <Link to="/legal-privacy" style={{ color: t.textPrimary, textDecoration: 'none', fontWeight: 600 }}>Legal & Privacy information</Link>
@@ -81,7 +81,7 @@ export default function PrevPrivacyPolicyPage({ user, onOpenLogin }) {
               border: `1px solid ${t.border}`, 
               boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)' 
             }}>
-              {/* Archived Alert Block */}
+              {}
               <div style={{ 
                 backgroundColor: 'rgba(239, 68, 68, 0.08)', 
                 borderLeft: '4px solid #ef4444', 
@@ -101,7 +101,7 @@ export default function PrevPrivacyPolicyPage({ user, onOpenLogin }) {
                 This archived policy reflects the earlier, simpler data practices used by CollegeMart before 12 September 2025. It does not include OAuth/Google login, Firebase Cloud Messaging, or Grievance Officer contact details.
               </p>
 
-              {/* Styled Sections with Emojis Removed */}
+              {}
               <section style={{ marginTop: '28px' }}>
                 <h3 style={{ fontSize: '20px', fontWeight: '700', color: t.textPrimary, marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   Key Differences from Current Policy

@@ -45,7 +45,7 @@ export default function BlogPage({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the blog page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',
@@ -74,7 +74,7 @@ export default function BlogPage({ user, onOpenLogin }) {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar user={user} onOpenLogin={onOpenLogin} />
 
-        {/* Hero */}
+        {}
         <section style={{ backgroundColor: 'transparent', borderBottom: `1px solid ${t.border}`, padding: '48px 24px' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
             <p style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: t.tagText, marginBottom: '12px' }}>Blog</p>
@@ -87,7 +87,7 @@ export default function BlogPage({ user, onOpenLogin }) {
 
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '48px 24px' }}>
 
-        {/* Latest Posts */}
+        {}
         <section style={{ marginBottom: '48px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>
             <div>
@@ -133,7 +133,7 @@ export default function BlogPage({ user, onOpenLogin }) {
 
         <div style={{ borderTop: `1px solid ${t.border}`, margin: '0 0 40px' }} />
 
-        {/* Trending */}
+        {}
         <section>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: t.textPrimary, margin: 0 }}>Trending This Month</h2>

@@ -22,7 +22,6 @@ export default function AdminCategories() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // Modal State
   const [showModal, setShowModal] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [form, setForm] = useState({ name: '', emoji: '', description: '' })
@@ -94,7 +93,7 @@ export default function AdminCategories() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Category Settings</h1>
@@ -109,14 +108,14 @@ export default function AdminCategories() {
         </button>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Grid of categories */}
+      {}
       {loading ? (
         <div className="text-center py-12 font-mono text-sm" style={{ color: 'var(--text-muted)' }}>
           Loading marketplace categories...
@@ -173,7 +172,7 @@ export default function AdminCategories() {
         </div>
       )}
 
-      {/* Add / Edit Modal */}
+      {}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)} />

@@ -1,4 +1,4 @@
-// Product categories
+
 export const PRODUCT_CATEGORIES = [
   'Books & Notes',
   'Electronics',
@@ -14,7 +14,6 @@ export const PRODUCT_CATEGORIES = [
   'Services'
 ]
 
-// Product conditions
 export const PRODUCT_CONDITIONS = [
   'Good',
   'Excellent',
@@ -22,7 +21,6 @@ export const PRODUCT_CONDITIONS = [
   'Poor'
 ]
 
-// Offer statuses
 export const OFFER_STATUSES = [
   'pending',
   'accepted',
@@ -30,10 +28,8 @@ export const OFFER_STATUSES = [
   'countered'
 ]
 
-// Review ratings
 export const REVIEW_RATINGS = [1, 2, 3, 4, 5]
 
-// API Configuration
 export const API_CONFIG = {
   PAGINATION_LIMIT_DEFAULT: 20,
   PAGINATION_LIMIT_MAX: 100,
@@ -49,7 +45,6 @@ export const API_CONFIG = {
   }
 }
 
-// Error messages
 export const ERROR_MESSAGES = {
   UNAUTHORIZED: 'Authorization token missing',
   INVALID_TOKEN: 'Invalid or expired token',
@@ -65,7 +60,6 @@ export const ERROR_MESSAGES = {
   SOCKET_AUTH_ERROR: 'Socket authentication failed'
 }
 
-// Success messages
 export const SUCCESS_MESSAGES = {
   PRODUCT_CREATED: 'Product created successfully',
   PRODUCT_UPDATED: 'Product updated successfully',

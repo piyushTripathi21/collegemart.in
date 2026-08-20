@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-// Create Admin API client instance
 const adminApi = axios.create({
   baseURL: (import.meta.env.VITE_API_URL || '') + '/api/admin',
-  // withCredentials: true,
+
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -12,7 +11,6 @@ const adminApi = axios.create({
   xsrfHeaderName: 'X-CSRF-Token'
 })
 
-// Add request interceptor to include admin auth token
 adminApi.interceptors.request.use(
   (config) => {
     const adminToken = localStorage.getItem('adminToken')
@@ -26,16 +24,14 @@ adminApi.interceptors.request.use(
   }
 )
 
-// Add response interceptor for error handling
 adminApi.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Handle 401 - Admin token expired or invalid
+
     if (error.response?.status === 401) {
       localStorage.removeItem('adminToken')
       localStorage.removeItem('adminUser')
-      
-      // Prevent infinite redirect loops if already on login page
+
       if (!window.location.pathname.startsWith('/admin/login')) {
         window.location.href = '/admin/login'
       }
@@ -50,11 +46,6 @@ adminApi.interceptors.response.use(
   }
 )
 
-// ============================================================================
-// ADMIN API METHODS
-// ============================================================================
-
-// AUTHENTICATION
 export const adminAuthAPI = {
   login: (email, password) =>
     adminApi.post('/login', { email, password }),
@@ -64,7 +55,6 @@ export const adminAuthAPI = {
     adminApi.put('/change-password', { currentPassword, newPassword })
 }
 
-// DASHBOARD
 export const adminDashboardAPI = {
   getStats: () =>
     adminApi.get('/dashboard/stats'),
@@ -72,7 +62,6 @@ export const adminDashboardAPI = {
     adminApi.get('/dashboard/charts')
 }
 
-// USER MANAGEMENT
 export const adminUsersAPI = {
   getAll: (params) =>
     adminApi.get('/users', { params }),
@@ -88,7 +77,6 @@ export const adminUsersAPI = {
     adminApi.put(`/users/${id}/coins`, { amount, action })
 }
 
-// PRODUCT MANAGEMENT
 export const adminProductsAPI = {
   getAll: (params) =>
     adminApi.get('/products', { params }),
@@ -104,7 +92,6 @@ export const adminProductsAPI = {
     adminApi.put(`/products/${id}/hide`, { hidden, reason })
 }
 
-// CATEGORY MANAGEMENT
 export const adminCategoriesAPI = {
   getAll: () =>
     adminApi.get('/categories'),
@@ -116,7 +103,6 @@ export const adminCategoriesAPI = {
     adminApi.delete(`/categories/${id}`)
 }
 
-// REPORTS & MODERATION
 export const adminReportsAPI = {
   getAll: (params) =>
     adminApi.get('/reports', { params }),
@@ -124,19 +110,16 @@ export const adminReportsAPI = {
     adminApi.put(`/reports/${id}`, { status }) // status: 'resolved' or 'dismissed'
 }
 
-// TRANSACTIONS
 export const adminTransactionsAPI = {
   getAll: (params) =>
     adminApi.get('/transactions', { params })
 }
 
-// OFFERS
 export const adminOffersAPI = {
   getAll: (params) =>
     adminApi.get('/offers', { params })
 }
 
-// MESSAGES MODERATION
 export const adminMessagesAPI = {
   getByProduct: (productId) =>
     adminApi.get(`/messages/${productId}`),
@@ -144,7 +127,6 @@ export const adminMessagesAPI = {
     adminApi.delete(`/messages/${id}`)
 }
 
-// REVIEWS MODERATION
 export const adminReviewsAPI = {
   getAll: (params) =>
     adminApi.get('/reviews', { params }),
@@ -152,19 +134,16 @@ export const adminReviewsAPI = {
     adminApi.delete(`/reviews/${id}`)
 }
 
-// COINS & WALLET
 export const adminCoinsAPI = {
   getStats: () =>
     adminApi.get('/coins/stats')
 }
 
-// COLLEGES
 export const adminCollegesAPI = {
   getAll: () =>
     adminApi.get('/colleges')
 }
 
-// ANNOUNCEMENTS
 export const adminAnnouncementsAPI = {
   getAll: () =>
     adminApi.get('/announcements'),
@@ -176,7 +155,6 @@ export const adminAnnouncementsAPI = {
     adminApi.post(`/announcements/${id}/send-email`)
 }
 
-// SITE SETTINGS
 export const adminSettingsAPI = {
   getAll: () =>
     adminApi.get('/settings'),
@@ -184,7 +162,6 @@ export const adminSettingsAPI = {
     adminApi.put('/settings', settings)
 }
 
-// ACCESS CONTROL & LOGS
 export const adminAccessAPI = {
   getAdmins: () =>
     adminApi.get('/admins'),
@@ -196,7 +173,6 @@ export const adminAccessAPI = {
     adminApi.get('/logs', { params })
 }
 
-// ANALYTICS
 export const adminAnalyticsAPI = {
   getUsers: (days = 30) =>
     adminApi.get('/analytics/users', { params: { days } }),
@@ -207,7 +183,7 @@ export const adminAnalyticsAPI = {
   getRevenue: (days = 30) =>
     adminApi.get('/analytics/revenue', { params: { days } }),
   exportCSV: async () => {
-    // Download directly using axios and file blob creation
+
     const adminToken = localStorage.getItem('adminToken')
     const response = await axios({
       url: (import.meta.env.VITE_API_URL || '') + '/api/admin/analytics/export',
@@ -217,8 +193,7 @@ export const adminAnalyticsAPI = {
         Authorization: `Bearer ${adminToken}`
       }
     })
-    
-    // Create download link and click it
+
     const url = window.URL.createObjectURL(new Blob([response.data]))
     const link = document.createElement('a')
     link.href = url

@@ -5,7 +5,6 @@ export const csrfProtection = (req, res, next) => {
     return next();
   }
 
-  // Safe HTTP methods do not require CSRF checks
   if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
     return next();
   }

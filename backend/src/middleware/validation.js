@@ -1,6 +1,5 @@
 import COLLEGES from '../data/colleges.js';
 
-// Verify that a college exists in the whitelist
 export const validateCollege = (college) => {
   if (typeof college !== 'string') return false;
   const target = college.trim().toLowerCase();

@@ -16,7 +16,6 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
   const [loading, setLoading] = useState(true)
   const [liked, setLiked] = useState({})
 
-  // Theme-aware colors (matching CategoryPage / FavoritesPage)
   const pageBg = isDark ? '#0f1117' : theme === 'ocean' ? '#e8f4fd' : theme === 'sunset' ? '#fff3e8' : 'var(--bg-gradient)'
   const cardBg = isDark ? '#1e2130' : '#ffffff'
   const titleColor = isDark ? '#e8eaf0' : '#002f34'
@@ -59,7 +58,6 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
     loadCollegeProducts()
   }, [collegeName, navigate])
 
-  // Load favorites
   useEffect(() => {
     const loadFavorites = async () => {
       if (!user) { setLiked({}); return }
@@ -147,7 +145,7 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
     <div style={{ minHeight: '100vh', background: pageBg }}>
       <Navbar {...navbarProps} />
 
-      {/* Hero Header — matching CategoryPage */}
+      {}
       <div style={{
         background: isDark
           ? 'linear-gradient(135deg, #0f2033 0%, #1a1060 100%)'
@@ -178,7 +176,7 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
         </p>
       </div>
 
-      {/* Products Grid */}
+      {}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
         {products.length === 0 ? (
           <div style={{
@@ -237,7 +235,7 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
                   e.currentTarget.style.borderColor = borderClr
                 }}
               >
-                {/* Image */}
+                {}
                 <div style={{
                   position: 'relative', height: '190px',
                   backgroundColor: isDark ? '#252836' : '#f5f5f5',
@@ -264,7 +262,7 @@ export default function CollegeDetailsPage({ user, onOpenLogin, selectedCategory
                   </button>
                 </div>
 
-                {/* Info */}
+                {}
                 <div style={{ padding: '14px' }}>
                   <div style={{ display: 'flex', gap: '6px', marginBottom: '8px', flexWrap: 'wrap' }}>
                     {product.condition && (

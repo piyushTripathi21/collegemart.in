@@ -13,7 +13,6 @@ export default function FavoritesPage({ user, onOpenLogin }) {
   const [favorites, setFavorites] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Theme-aware colors (matching CategoryPage)
   const pageBg = isDark ? '#0f1117' : theme === 'ocean' ? '#e8f4fd' : theme === 'sunset' ? '#fff3e8' : '#f2f4f5'
   const cardBg = isDark ? '#1e2130' : '#ffffff'
   const titleColor = isDark ? '#e8eaf0' : '#002f34'
@@ -72,7 +71,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Subtle decorative blobs across the favorites page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '500px', height: '500px', borderRadius: '50%',
@@ -93,7 +92,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar user={user} onOpenLogin={onOpenLogin} />
 
-        {/* Hero Header — premium themed gradient matching CategoryPage */}
+        {}
         <div style={{
           background: isDark
             ? 'linear-gradient(135deg, #0f2033 0%, #1a1060 100%)'
@@ -105,7 +104,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
           position: 'relative',
           overflow: 'hidden'
         }}>
-          {/* decorative circles */}
+          {}
           <div style={{
             position: 'absolute', top: '-40px', right: '120px',
             width: '160px', height: '160px', borderRadius: '50%',
@@ -151,7 +150,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
           </p>
         </div>
 
-        {/* Content */}
+        {}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '80px 20px', color: textMuted, fontSize: '18px' }}>
@@ -210,7 +209,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
                     e.currentTarget.style.borderColor = borderClr
                   }}
                 >
-                  {/* Image */}
+                  {}
                   <div style={{
                     position: 'relative', height: '190px',
                     backgroundColor: isDark ? '#252836' : '#f5f5f5',
@@ -225,7 +224,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
                     ) : (
                       <div style={{ fontSize: '56px' }}>📦</div>
                     )}
-                    {/* Remove button */}
+                    {}
                     <button
                       onClick={e => removeFavorite(e, product.id)}
                       title="Remove from favorites"
@@ -245,9 +244,9 @@ export default function FavoritesPage({ user, onOpenLogin }) {
                     </button>
                   </div>
 
-                  {/* Info */}
+                  {}
                   <div style={{ padding: '14px' }}>
-                    {/* Condition + Status badges */}
+                    {}
                     <div style={{ display: 'flex', gap: '6px', marginBottom: '8px', flexWrap: 'wrap' }}>
                       {product.condition && (
                         <span style={{
@@ -267,7 +266,7 @@ export default function FavoritesPage({ user, onOpenLogin }) {
                       </span>
                     </div>
 
-                    {/* Category label */}
+                    {}
                     {product.category && (
                       <div style={{
                         display: 'inline-block', marginBottom: '6px',

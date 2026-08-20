@@ -43,7 +43,7 @@ export default function SitemapPage({ user, onOpenLogin, selectedCategory, setSe
       <main style={{ padding: '40px 20px', maxWidth: '1180px', margin: '0 auto' }}>
         <section style={{ padding: '40px', borderRadius: '24px', backgroundColor: 'white', boxShadow: '0 20px 40px rgba(15, 23, 42, 0.06)' }}>
           <div style={{ marginBottom: '32px', textAlign: 'center' }}>
-            {/* <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '10px' }}>COLLEGEMART</p> */}
+            {}
             <h1 style={{ fontSize: '42px', color: '#0f172a', fontWeight: 700, marginBottom: '12px' }}>Sitemap</h1>
             <p style={{ color: '#475569', fontSize: '16px', maxWidth: '760px', margin: '0 auto' }}>
               Discover every page, category, and location on CollegeMart from one place. Navigate directly to the most popular sections and search paths.

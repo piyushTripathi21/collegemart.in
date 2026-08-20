@@ -67,7 +67,7 @@ export function ThemeProvider({ children }) {
   }
 
   useEffect(() => {
-    // Remove all theme data attributes first
+
     document.documentElement.removeAttribute('data-theme')
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])

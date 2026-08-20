@@ -74,7 +74,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
     })
 
     socket.on('new_message', (msg) => {
-      // append message if relevant to current product
+
       if (!msg || !product || msg.product_id !== product.id) return
       setMessages((prev) => {
         if (prev.some((existing) => existing.id === msg.id)) {
@@ -159,7 +159,6 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
         }
       })
 
-      // Update user coins in localStorage
       const updatedUser = {
         ...user,
         coins: response.data.total_coins
@@ -251,7 +250,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
     setChatError('')
     setChatOpen(true)
     await loadMessages()
-    // Join product room for real-time updates
+
     try {
       socketRef.current?.emit('join', { productId: product.id })
     } catch (e) {}
@@ -352,7 +351,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
       <Navbar user={user} onOpenLogin={onOpenLogin} />
       <div style={{ minHeight: '80vh', backgroundColor: '#f9fafb', padding: '40px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          {/* Back Button */}
+          {}
           <button
             onClick={() => navigate(-1)}
             style={{
@@ -378,7 +377,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
             borderRadius: '12px',
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
           }}>
-            {/* Product Image */}
+            {}
             <div>
               <div style={{
                 width: '100%',
@@ -439,7 +438,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 </div>
               )}
 
-              {/* Quick Info */}
+              {}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
@@ -471,13 +470,13 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
               </div>
             </div>
 
-            {/* Product Details */}
+            {}
             <div>
               <h1 style={{ fontSize: '32px', marginBottom: '16px', color: '#002f34' }}>
                 {product.title}
               </h1>
 
-              {/* Price */}
+              {}
               <div style={{
                 fontSize: '36px',
                 fontWeight: 'bold',
@@ -489,7 +488,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 ₹ {product.price?.toLocaleString('en-IN') || 0}
               </div>
 
-              {/* Description */}
+              {}
               {product.description && (
                 <div style={{ marginBottom: '24px' }}>
                   <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '8px', color: '#333' }}>
@@ -501,7 +500,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 </div>
               )}
 
-              {/* Product Info Grid */}
+              {}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
@@ -529,7 +528,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 </div>
               </div>
 
-              {/* Seller Information */}
+              {}
               <div style={{
                 backgroundColor: '#fef3c7',
                 padding: '20px',
@@ -571,7 +570,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr 1fr',
@@ -690,7 +689,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 )}
               </div>
 
-              {/* Chat Panel */}
+              {}
               {chatOpen && (
                 <div style={{
                   marginBottom: '24px',
@@ -822,7 +821,7 @@ export default function ProductDetailsPage({ user, onOpenLogin }) {
                 </div>
               )}
 
-              {/* Additional Info */}
+              {}
               <div style={{
                 padding: '16px',
                 backgroundColor: '#ecfdf5',

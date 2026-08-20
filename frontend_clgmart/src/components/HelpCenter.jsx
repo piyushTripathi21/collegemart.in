@@ -11,7 +11,6 @@ export default function HelpCenter({ user, onOpenLogin }) {
 
   const isDark = theme === 'dark'
 
-  // ── colour helpers ──────────────────────────────────────────────────
   const pageBg = isDark ? '#0f1117' : '#f5f7fa'
   const cardBg = isDark ? '#1a1d2e' : '#ffffff'
   const border = isDark ? '#2a2d3e' : '#e8ecf0'
@@ -22,7 +21,6 @@ export default function HelpCenter({ user, onOpenLogin }) {
   const heroBg = 'transparent'
   const sectionTitle = isDark ? '#f0f4ff' : '#1a2340'
 
-  // ── contact cards data ──────────────────────────────────────────────
   const reachUsCards = [
     {
       title: 'Connect with us',
@@ -129,7 +127,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the help page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',
@@ -158,9 +156,9 @@ export default function HelpCenter({ user, onOpenLogin }) {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar user={user} onOpenLogin={onOpenLogin} />
 
-        {/* ── HERO ──────────────────────────────────────────────── */}
+        {}
         <div style={{ background: heroBg, padding: '60px 32px 50px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-          {/* decorative circles */}
+          {}
           <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '240px', height: '240px', borderRadius: '50%', background: isDark ? 'rgba(35,229,219,0.05)' : 'rgba(14,165,233,0.08)', pointerEvents: 'none' }} />
           <div style={{ position: 'absolute', bottom: '-40px', left: '-40px', width: '180px', height: '180px', borderRadius: '50%', background: isDark ? 'rgba(99,102,241,0.06)' : 'rgba(99,102,241,0.07)', pointerEvents: 'none' }} />
 
@@ -173,7 +171,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
               Our team is always here to help CollegeMart students and sellers
             </p>
 
-            {/* Illustration row */}
+            {}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '10px', flexWrap: 'wrap' }}>
               {[
                 { type: 'img', src: '/static-assets/help-laptop.png', alt: 'Laptop support' },
@@ -226,7 +224,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── NEED HELP? ────────────────────────────────────────── */}
+        {}
         <div style={{ backgroundColor: 'transparent', padding: '40px 32px', textAlign: 'center', borderBottom: `1px solid ${border}` }}>
           <h2 style={{ fontSize: '22px', fontWeight: 700, color: sectionTitle, margin: '0 0 6px' }}>Need Help?</h2>
           <p style={{ fontSize: '13px', color: textSecondary, margin: '0 0 24px' }}>
@@ -295,7 +293,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
           )}
         </div>
 
-        {/* ── REACH US ──────────────────────────────────────────── */}
+        {}
         <div style={{ backgroundColor: 'transparent', padding: '50px 32px' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
             <h2 style={{ textAlign: 'center', fontSize: '24px', fontWeight: 700, color: sectionTitle, margin: '0 0 36px' }}>
@@ -346,7 +344,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── OUR TEAM ──────────────────────────────────────────── */}
+        {}
         <div style={{ backgroundColor: 'transparent', borderTop: `1px solid ${border}`, padding: '50px 32px 60px' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
             <h2 style={{ textAlign: 'center', fontSize: '24px', fontWeight: 700, color: sectionTitle, margin: '0 0 36px' }}>
@@ -362,7 +360,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
                   onMouseEnter={e => { e.currentTarget.style.boxShadow = isDark ? '0 8px 24px rgba(0,0,0,0.4)' : '0 8px 24px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
                   onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)' }}
                 >
-                  {/* Avatar circle */}
+                  {}
                   <div style={{
                     width: '52px', height: '52px', borderRadius: '50%', flexShrink: 0,
                     background: `${card.color}22`, border: `2px solid ${card.color}44`,
@@ -383,7 +381,7 @@ export default function HelpCenter({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── BOTTOM NOTE ───────────────────────────────────────── */}
+        {}
         <div style={{ background: isDark ? '#080b12' : '#1a2340', padding: '24px 32px', textAlign: 'center' }}>
           <p style={{ margin: 0, fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
             ⚠️ Never scan a QR code or share your OTP/password with anyone claiming to be CollegeMart staff.

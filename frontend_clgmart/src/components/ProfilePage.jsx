@@ -6,14 +6,12 @@ import Footer from './Footer'
 import { useTheme } from '../context/ThemeContext'
 import { useThemeStyles } from '../context/useThemeStyles'
 
-
 export default function ProfilePage({ user, onLogout, onOpenLogin }) {
   const navigate = useNavigate()
   const t = useThemeStyles()
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
-  // Dynamic gradients matching the website theme
   const getGradients = () => {
     switch (theme) {
       case 'dark':
@@ -55,7 +53,6 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  // Listen for user profile updates (including coins from mark-sold)
   useEffect(() => {
     const handleProfileUpdate = () => {
       const updatedUser = JSON.parse(localStorage.getItem('user'))
@@ -75,7 +72,6 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
     return () => window.removeEventListener('userProfileUpdated', handleProfileUpdate)
   }, [])
 
-  // Redirect if not logged in
   if (!currentUser) {
     return (
       <div style={{
@@ -84,7 +80,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        {/* Subtle decorative blobs */}
+        {}
         <div style={{
           position: 'absolute', top: '10%', right: '-150px',
           width: '450px', height: '450px', borderRadius: '50%',
@@ -152,8 +148,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
   const handleSaveProfile = async () => {
     try {
       let imageUrl = profileImage
-      
-      // Upload image if a new one was selected
+
       if (profileImageFile) {
         const formData = new FormData()
         formData.append('profileImage', profileImageFile)
@@ -222,7 +217,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Subtle decorative blobs */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '500px', height: '500px', borderRadius: '50%',
@@ -248,7 +243,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
           margin: '0 auto',
           padding: '40px 20px'
         }}>
-          {/* Profile Header */}
+          {}
           <div style={{
             '--header-gradient': gradients.profileHeader,
             background: 'var(--header-gradient)',
@@ -312,48 +307,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
                   />
                   <input
                     type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    style={{ display: 'none' }}
-                  />
-                </label>
-              )}
-            </div>
-            <h1 style={{ color: 'white' }}>{profileData.name}</h1>
-            <p style={{ color: 'rgba(255,255,255,0.85)' }}>{profileData.email}</p>
-          </div>
-
-          {successMessage && (
-            <div style={{
-              backgroundColor: isDark ? '#064e3b' : '#d4edda',
-              color: isDark ? '#34d399' : '#155724',
-              padding: '15px',
-              borderRadius: '8px',
-              border: `1px solid ${isDark ? '#047857' : '#c3e6cb'}`,
-              marginBottom: '20px',
-              textAlign: 'center',
-              fontWeight: '600'
-            }}>
-              ✓ {successMessage}
-            </div>
-          )}
-
-          {errorMessage && (
-            <div style={{
-              backgroundColor: isDark ? '#7f1d1d' : '#fde8e8',
-              color: isDark ? '#fca5a5' : '#dc2626',
-              padding: '15px',
-              borderRadius: '8px',
-              border: `1px solid ${isDark ? '#991b1b' : '#f87171'}`,
-              marginBottom: '20px',
-              textAlign: 'center',
-              fontWeight: '600'
-            }}>
-              ✕ {errorMessage}
-            </div>
-          )}
-
-          {/* Wallet Section */}
+                    accept="image}
           <div style={{
             '--wallet-gradient': gradients.wallet,
             background: 'var(--wallet-gradient)',
@@ -373,7 +327,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
             </p>
           </div>
 
-          {/* Profile Info */}
+          {}
           <div style={{
             backgroundColor: t.cardBg,
             padding: '30px',
@@ -459,7 +413,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
               )}
             </div>
 
-            {/* Profile Fields */}
+            {}
             <div style={{ display: 'grid', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: t.textPrimary }}>
@@ -556,7 +510,7 @@ export default function ProfilePage({ user, onLogout, onOpenLogin }) {
             </div>
           </div>
 
-          {/* Account Settings */}
+          {}
           <div style={{
             backgroundColor: t.cardBg,
             padding: '30px',

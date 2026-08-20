@@ -16,7 +16,6 @@ export default function CategoryPage({ user, onOpenLogin }) {
   const [loading, setLoading] = useState(true)
   const [liked, setLiked] = useState({})
 
-  // Theme-aware colors
   const pageBg = isDark ? '#0f1117' : theme === 'ocean' ? '#e8f4fd' : theme === 'sunset' ? '#fff3e8' : 'var(--bg-gradient)'
   const heroBg = isDark
     ? 'linear-gradient(135deg, #0f2033 0%, #1a1060 100%)'
@@ -26,7 +25,6 @@ export default function CategoryPage({ user, onOpenLogin }) {
   const textMuted = isDark ? '#8892a4' : '#777'
   const borderClr = isDark ? '#2e3347' : '#e0e0e0'
 
-  // Fetch products by category from API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -45,7 +43,6 @@ export default function CategoryPage({ user, onOpenLogin }) {
     fetchProducts()
   }, [categoryName])
 
-  // Load favorites
   useEffect(() => {
     const loadFavorites = async () => {
       if (!user) { setLiked({}); return }
@@ -98,7 +95,6 @@ export default function CategoryPage({ user, onOpenLogin }) {
     return `${Math.floor(hours / 24)}d ago`
   }
 
-  // Category image map
   const categoryImage = {
     'Books': '/books-category.png',
     'Electronics': '/electronics-category.png',
@@ -115,7 +111,6 @@ export default function CategoryPage({ user, onOpenLogin }) {
     'Books & Notes': '/books-category.png'
   }
 
-  // Category emoji map
   const categoryEmoji = {
     'Books': '📚', 'Electronics': '💻', 'Cycles & Bikes': '🚲',
     'Hostel Furniture': '🛋️', 'Clothing': '👕', 'Stationery': '✏️',
@@ -130,7 +125,7 @@ export default function CategoryPage({ user, onOpenLogin }) {
     <div style={{ minHeight: '100vh', background: pageBg }}>
       <Navbar user={user} onOpenLogin={onOpenLogin} />
 
-      {/* Hero Header */}
+      {}
       <div style={{
         background: heroBg,
         color: 'white',
@@ -139,7 +134,7 @@ export default function CategoryPage({ user, onOpenLogin }) {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* decorative circles */}
+        {}
         <div style={{
           position: 'absolute', top: '-40px', right: '120px',
           width: '160px', height: '160px', borderRadius: '50%',
@@ -185,7 +180,7 @@ export default function CategoryPage({ user, onOpenLogin }) {
         </p>
       </div>
 
-      {/* Products Grid */}
+      {}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
         {loading ? (
           <div style={{ textAlign: 'center', padding: '80px 20px', color: textMuted, fontSize: '18px' }}>
@@ -242,7 +237,7 @@ export default function CategoryPage({ user, onOpenLogin }) {
                   e.currentTarget.style.borderColor = borderClr
                 }}
               >
-                {/* Image */}
+                {}
                 <div style={{
                   position: 'relative', height: '190px',
                   background: isDark
@@ -256,7 +251,7 @@ export default function CategoryPage({ user, onOpenLogin }) {
                   ) : (
                     <div style={{ fontSize: '56px' }}>📦</div>
                   )}
-                  {/* Heart button */}
+                  {}
                   <button
                     onClick={e => toggleLike(e, product.id)}
                     style={{
@@ -272,9 +267,9 @@ export default function CategoryPage({ user, onOpenLogin }) {
                   </button>
                 </div>
 
-                {/* Info */}
+                {}
                 <div style={{ padding: '14px' }}>
-                  {/* Condition + Status badges */}
+                  {}
                   <div style={{ display: 'flex', gap: '6px', marginBottom: '8px', flexWrap: 'wrap' }}>
                     {product.condition && (
                       <span style={{

@@ -4,13 +4,11 @@ export default function SplashScreen({ onFinish }) {
   const [phase, setPhase] = useState('enter') // 'enter' | 'visible' | 'exit'
 
   useEffect(() => {
-    // Phase 1: logo fades + scales in (600ms)
+
     const visibleTimer = setTimeout(() => setPhase('visible'), 600)
 
-    // Phase 2: start exit fade after 2.2s total
     const exitTimer = setTimeout(() => setPhase('exit'), 2200)
 
-    // Phase 3: fully done, unmount after exit animation (500ms)
     const doneTimer = setTimeout(() => onFinish(), 2700)
 
     return () => {
@@ -36,7 +34,7 @@ export default function SplashScreen({ onFinish }) {
         pointerEvents: phase === 'exit' ? 'none' : 'all',
       }}
     >
-      {/* Ambient glow blobs – soft white on teal */}
+      {}
       <div style={{
         position: 'absolute', top: '15%', left: '15%',
         width: '400px', height: '400px', borderRadius: '50%',
@@ -50,7 +48,7 @@ export default function SplashScreen({ onFinish }) {
         filter: 'blur(100px)', pointerEvents: 'none',
       }} />
 
-      {/* Logo */}
+      {}
       <div
         style={{
           display: 'flex',
@@ -62,7 +60,7 @@ export default function SplashScreen({ onFinish }) {
           transition: 'transform 0.6s cubic-bezier(0.34,1.56,0.64,1), opacity 0.6s ease',
         }}
       >
-        {/* Logo image – circular white container */}
+        {}
         <div style={{
           position: 'relative',
           width: '130px',
@@ -71,7 +69,7 @@ export default function SplashScreen({ onFinish }) {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-          {/* Pulsing rings – dark on teal */}
+          {}
           <div style={{
             position: 'absolute',
             inset: '-14px',
@@ -87,7 +85,7 @@ export default function SplashScreen({ onFinish }) {
             animation: 'splash-ring-pulse 1.8s ease-in-out infinite 0.3s',
           }} />
 
-          {/* Circular white background behind logo */}
+          {}
           <div style={{
             width: '130px',
             height: '130px',
@@ -111,7 +109,7 @@ export default function SplashScreen({ onFinish }) {
           </div>
         </div>
 
-        {/* Brand name */}
+        {}
         <div style={{ textAlign: 'center' }}>
           <div style={{
             fontSize: '36px',
@@ -140,7 +138,7 @@ export default function SplashScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Loading dots */}
+      {}
       <div style={{
         position: 'absolute',
         bottom: '60px',

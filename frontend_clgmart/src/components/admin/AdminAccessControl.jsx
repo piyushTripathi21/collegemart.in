@@ -11,7 +11,6 @@ export default function AdminAccessControl() {
   const [logsPagination, setLogsPagination] = useState({ total: 0, pages: 1 })
   const [adminRole, setAdminRole] = useState('')
 
-  // Modals state
   const [showAddModal, setShowAddModal] = useState(false)
   const [addForm, setAddForm] = useState({ name: '', email: '', password: '', role: 'moderator' })
   const [showEditModal, setShowEditModal] = useState(false)
@@ -111,7 +110,7 @@ export default function AdminAccessControl() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Access Control & Logs</h1>
@@ -128,7 +127,7 @@ export default function AdminAccessControl() {
         )}
       </div>
 
-      {/* Tabs bar */}
+      {}
       <div className="flex space-x-6 text-sm font-semibold border-b" style={{ borderColor: 'var(--border-color)' }}>
         <button
           onClick={() => { setActiveTab('admins'); setError(''); }}
@@ -154,14 +153,14 @@ export default function AdminAccessControl() {
         </button>
       </div>
 
-      {/* Error Alert */}
+      {}
       {error && (
         <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-sm">
           {error}
         </div>
       )}
 
-      {/* Admins Table */}
+      {}
       {activeTab === 'admins' && (
         <div className="rounded-xl border overflow-hidden shadow-sm" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="overflow-x-auto">
@@ -227,7 +226,7 @@ export default function AdminAccessControl() {
         </div>
       )}
 
-      {/* Activity logs */}
+      {}
       {activeTab === 'logs' && (
         <div className="rounded-xl border overflow-hidden shadow-sm space-y-4" style={{ background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}>
           <div className="overflow-x-auto">
@@ -278,7 +277,7 @@ export default function AdminAccessControl() {
             </table>
           </div>
 
-          {/* Pagination Footer */}
+          {}
           {logsPagination.pages > 1 && (
             <div className="p-4 border-t flex items-center justify-between text-xs font-semibold font-sans" style={{ background: 'var(--bg-gradient)', borderColor: 'var(--border-color)', color: 'var(--text-muted)' }}>
               <span>Showing page {logsPagination.page} of {logsPagination.pages} ({logsPagination.total} total logs)</span>
@@ -305,7 +304,7 @@ export default function AdminAccessControl() {
         </div>
       )}
 
-      {/* Add Admin Modal */}
+      {}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowAddModal(false)} />
@@ -385,7 +384,7 @@ export default function AdminAccessControl() {
         </div>
       )}
 
-      {/* Edit Admin Modal */}
+      {}
       {showEditModal && selectedAdmin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowEditModal(false)} />

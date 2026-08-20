@@ -58,7 +58,7 @@ export const optionalAuthenticate = (req, res, next) => {
             req.user = payload;
           }
         } catch (dbErr) {
-          // Fail silently for optional authentication
+
         }
       }
       next();

@@ -1,257 +1,271 @@
-# CollegeMart - Campus Marketplace
+<div align="center">
 
-A responsive, modern marketplace website where college students can buy and sell products within their campus. Built as an OLX India-style clone specifically designed for student communities.
+# 🎓 CollegeMart
 
-## Features
+### The Campus Marketplace for Students
 
-✨ **Modern UI/UX**
-- Exact OLX India design clone
-- Fully responsive (mobile, tablet, desktop)
-- Smooth animations and transitions
-- Clean, intuitive navigation
+[![Live Website](https://img.shields.io/badge/Live%20Website-collegemart.in-4CAF50?style=for-the-badge&logo=globe)](https://collegemart.in)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js)](https://nodejs.org)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)](https://mysql.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
-🛍️ **Marketplace Features**
-- Browse products by categories
-- Search functionality
-- Product filters (price, condition, location)
-- Wishlist system
-- User profiles and seller ratings
-- Product listings with detailed information
+**CollegeMart** is a full-stack campus marketplace where college students can buy and sell products within their campus community — fast, secure, and built for student life.
 
-💻 **Tech Stack**
-- **Frontend**: React 18 + Tailwind CSS + Vite
-- **Backend**: Node.js + Express.js
-- **Database**: MySQL
-- **API**: RESTful API with CORS
+🌐 **[Visit collegemart.in](https://collegemart.in)**
 
-## Project Structure
-
-```
-collegemart/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── Hero.jsx
-│   │   ├── CategoryTabs.jsx
-│   │   ├── CategoriesSection.jsx
-│   │   ├── ProductsSection.jsx
-│   │   └── Footer.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── server.js
-├── database.sql
-├── package.json
-├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
-├── .env
-├── .gitignore
-└── index.html
-```
-
-## Installation & Setup
-
-### 1. Install Dependencies
-```bash
-npm install
-```
-
-### 2. Database Setup
-
-**Prerequisites:**
-- MySQL Server installed and running
-- Access to MySQL command line or MySQL client
-
-**Steps:**
-```bash
-# Login to MySQL
-mysql -u root -p
-
-# Run the database setup script
-source database.sql
-```
-
-Or copy-paste the contents of `database.sql` into your MySQL client.
-
-### 3. Environment Variables
-
-Create/Update `.env` file:
-```
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=collegemart
-PORT=5000
-NODE_ENV=development
-```
-
-Adjust `DB_PASSWORD` if your MySQL has a password.
-
-### 4. Run the Project
-
-**Option A: Run Frontend & Backend Separately**
-
-Terminal 1 - Start Frontend (Vite):
-```bash
-npm run dev
-```
-Frontend runs on: `http://localhost:3000`
-
-Terminal 2 - Start Backend:
-```bash
-npm run server
-```
-Backend runs on: `http://localhost:5000`
-
-**Option B: Run Both Concurrently**
-```bash
-npm run dev:full
-```
-
-### 5. Build for Production
-```bash
-npm run build
-npm run preview
-```
-
-## API Endpoints
-
-### Products
-- `GET /api/products` - Get all products
-- `GET /api/products/:id` - Get single product
-- `POST /api/products` - Create product
-- `PUT /api/products/:id` - Update product
-- `DELETE /api/products/:id` - Delete product
-- `GET /api/products/category/:category` - Get by category
-- `GET /api/products/featured/all` - Get featured products
-- `GET /api/search?q=query` - Search products
-
-### Users
-- `POST /api/users` - Create user
-- `GET /api/users/:id` - Get user
-- `GET /api/users/:id/products` - Get user's products
-
-### Health Check
-- `GET /api/health` - Database connection status
-
-## Database Schema
-
-### Tables:
-- **users** - User accounts and profiles
-- **products** - Product listings
-- **categories** - Product categories
-- **wishlist** - User favorites
-- **reviews** - Product reviews
-- **messages** - User messages
-- **transactions** - Purchase history
-
-## UI Components
-
-### Navbar
-- Logo with accent color
-- Location dropdown
-- Search bar with category filter
-- Wishlist & Login buttons
-- "+ SELL" action button
-
-### Category Tabs
-- Horizontal scrollable tabs
-- "ALL CATEGORIES" active by default
-- Current date display
-- 9+ categories
-
-### Hero Section
-- Dark teal gradient background
-- Headline with emoji
-- Two CTA buttons
-
-### Categories Grid
-- 12-card auto-fill grid
-- Emoji icons + names
-- Hover shadow effects
-
-### Products Grid
-- Auto-fill responsive grid
-- Product cards with:
-  - Image/emoji placeholder
-  - Price (₹ format)
-  - Condition badge (Like New/Good/Fair)
-  - Title with truncation
-  - Location & time metadata
-  - Featured badge
-  - Heart wishlist button
-- Sell CTA card (position 4)
-
-### Footer
-- 5-column grid layout
-- College lists
-- Social media icons
-- App store badges
-- Dark teal bottom bar
-
-## Color System
-
-| Element | Color | Hex |
-|---------|-------|-----|
-| Primary Dark | Navy | #002f34 |
-| Primary Teal | Turquoise | #23e5db |
-| Background | Light Gray | #f2f4f5 |
-| Featured Badge | Gold | #f6b200 |
-| Like New | Green | #e6f9f2 |
-| Good | Amber | #fff4e0 |
-| Fair | Red | #fdecea |
-
-## Responsive Design
-
-- **Desktop**: Full layout with optimized spacing
-- **Tablet**: Adjusted grid columns
-- **Mobile**: Single column, stacked layout
-
-Breakpoint: 768px (Tailwind md)
-
-## Sample Data
-
-The database includes:
-- 8 sample users from different colleges
-- 8 sample products across categories
-- All categories with emojis
-- Featured products marked
-
-## Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Performance Optimizations
-
-- Lazy loading for images
-- CSS minification
-- Database indexing
-- Connection pooling
-- API response caching ready
-
-## Future Enhancements
-
-- [ ] User authentication (JWT)
-- [ ] Payment integration
-- [ ] Real-time chat
-- [ ] Image uploads
-- [ ] Email notifications
-- [ ] Admin dashboard
-- [ ] Rating system
-- [ ] Mobile app
-
-## License
-
-MIT License © 2024-2026 CollegeMart
-
-## Support
-
-For issues or questions, create an issue in the repository.
+</div>
 
 ---
 
-Built with ❤️ for college students
+## ✨ Features
+
+- 🛒 **Buy & Sell** — List products and browse campus listings instantly
+- 💬 **Real-time Chat** — Socket.IO powered in-app messaging between buyers and sellers
+- 🔐 **Secure Auth** — JWT-based authentication with refresh tokens, CSRF protection, and token blacklisting
+- 🏫 **College-based Filtering** — Browse listings specific to your college
+- 🪙 **Coins Wallet** — In-app currency system for premium features
+- 🔍 **Smart Search** — Full-text search with filters for price, condition, and category
+- ❤️ **Favorites** — Save and revisit listings you love
+- 📸 **Image Uploads** — Cloudinary-powered product image hosting
+- 📊 **Admin Dashboard** — Manage users, products, colleges, offers, reviews, and analytics
+- 🌙 **Dark / Light Mode** — System-aware theme with manual toggle
+- 📱 **Fully Responsive** — Optimized for mobile, tablet, and desktop
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 18, Vite, Tailwind CSS |
+| **Backend** | Node.js, Express.js |
+| **Database** | MySQL 8.0 |
+| **Real-time** | Socket.IO |
+| **Authentication** | JWT, bcrypt |
+| **File Storage** | Cloudinary |
+| **Email** | Nodemailer |
+| **Security** | Helmet, CSRF, Rate Limiting |
+| **Deployment** | Docker, Vercel (frontend) |
+
+---
+
+## 📁 Project Structure
+
+```
+collegemart.in/
+├── backend/                    # Node.js + Express API server
+│   ├── src/
+│   │   ├── config/             # Database & Cloudinary configuration
+│   │   ├── middleware/         # Auth, CSRF, rate limiting, validation, error handling
+│   │   ├── routes/             # Auth, products, messages, colleges
+│   │   ├── data/               # Static college data
+│   │   └── utils/              # Shared error utilities
+│   ├── admin-routes.js         # Admin panel API routes
+│   ├── server.js               # Express app entry point with Socket.IO
+│   ├── database.sql            # Full database schema
+│   └── package.json
+│
+├── frontend_clgmart/           # React + Vite frontend
+│   ├── src/
+│   │   ├── components/         # Page and UI components
+│   │   │   └── admin/          # Admin dashboard components
+│   │   ├── context/            # Theme and Toast context providers
+│   │   ├── services/           # Axios API service layer
+│   │   ├── hooks/              # Custom React hooks
+│   │   ├── utils/              # Utility functions
+│   │   └── constants/          # App-wide constants
+│   ├── index.html
+│   └── package.json
+│
+├── .env.example                # Environment variable template
+├── Dockerfile                  # Docker deployment config
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** v18+
+- **MySQL** 8.0+
+- **npm** v9+
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/piyushTripathi21/collegemart.in.git
+cd collegemart.in
+```
+
+### 2. Configure Environment Variables
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
+
+```env
+# Database
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=collegemart
+
+# Auth
+JWT_SECRET=your_jwt_secret_here
+ADMIN_JWT_SECRET=your_admin_jwt_secret_here
+
+# Server
+PORT=5000
+NODE_ENV=development
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Email (Nodemailer)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+
+# CORS
+CORS_ORIGIN=http://localhost:3000
+```
+
+### 3. Set Up the Database
+
+```bash
+mysql -u root -p < backend/database.sql
+```
+
+### 4. Install Dependencies
+
+```bash
+# Backend
+cd backend
+npm install
+
+# Frontend
+cd ../frontend_clgmart
+npm install
+```
+
+### 5. Run the Development Servers
+
+**Backend** (Terminal 1):
+```bash
+cd backend
+npm run dev
+```
+> API runs on `http://localhost:5000`
+
+**Frontend** (Terminal 2):
+```bash
+cd frontend_clgmart
+npm run dev
+```
+> App runs on `http://localhost:3000`
+
+---
+
+## 🔌 API Reference
+
+Base URL: `/api/v1`
+
+### Auth
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/auth/register` | Register a new user |
+| `POST` | `/auth/login` | Login and receive JWT |
+| `POST` | `/auth/logout` | Invalidate token |
+| `POST` | `/auth/forgot-password` | Send password reset email |
+| `POST` | `/auth/reset-password` | Reset password with token |
+| `GET`  | `/auth/verify-email` | Verify email address |
+
+### Products
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/products` | List products (with filters) |
+| `GET`  | `/products/:id` | Get product details |
+| `POST` | `/products` | Create a listing |
+| `PUT`  | `/products/:id` | Update a listing |
+| `DELETE` | `/products/:id` | Delete a listing |
+
+### Messages
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/messages` | Get conversations |
+| `POST` | `/messages` | Send a message |
+
+### System
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/health` | Health check |
+| `GET`  | `/notifications` | Unread counts |
+
+---
+
+## 🗄️ Database Schema
+
+| Table | Description |
+|-------|-------------|
+| `users` | User accounts, profiles, wallet balance |
+| `products` | Product listings with images and metadata |
+| `categories` | Product categories |
+| `messages` | Chat messages between users |
+| `offers` | Buy/sell offers on listings |
+| `reviews` | Product and seller reviews |
+| `transactions` | Coin and wallet transaction history |
+| `token_blacklist` | Invalidated JWT tokens |
+| `colleges` | Supported college list |
+
+---
+
+## 🔒 Security
+
+- JWT authentication with token blacklisting on logout
+- CSRF token validation on all state-changing requests
+- Route-specific rate limiting (login, register, search, messages)
+- Helmet.js security headers with custom CSP
+- SQL injection prevention via parameterized queries
+- Input validation and sanitization middleware
+- Automatic Socket.IO token expiry disconnect
+
+---
+
+## 🐳 Docker Deployment
+
+```bash
+docker build -t collegemart .
+docker run -p 5000:5000 --env-file .env collegemart
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'feat: add your feature'`
+4. Push to branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+MIT License © 2024–2026 CollegeMart
+
+---
+
+<div align="center">
+
+Built with ❤️ for college students across India
+
+🌐 **[collegemart.in](https://collegemart.in)**
+
+</div>

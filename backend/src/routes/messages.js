@@ -15,7 +15,6 @@ const escapeHtml = (text) => {
     .replace(/'/g, '&#039;');
 };
 
-// Get messages for a product with pagination
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const { product_id } = req.query;
@@ -58,7 +57,6 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
-// Get conversations for current user with pagination limits
 router.get('/conversations', authenticateToken, async (req, res) => {
   try {
     const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -114,7 +112,6 @@ router.get('/conversations', authenticateToken, async (req, res) => {
   }
 });
 
-// Send a message
 router.post('/', authenticateToken, messageLimiter, async (req, res) => {
   try {
     const productId = Number(req.body.product_id);
@@ -168,7 +165,6 @@ router.post('/', authenticateToken, messageLimiter, async (req, res) => {
     const message = rows[0];
     connection.release();
 
-    // Broadcast messages safely using request-attached socketio
     const io = req.app.get('socketio');
     if (io) {
       try {
@@ -180,7 +176,6 @@ router.post('/', authenticateToken, messageLimiter, async (req, res) => {
       }
     }
 
-    // Send email notification (errors logged, response not blocked)
     if (receivers[0]) {
       const receiver = receivers[0];
       const senderName = message.sender_name || 'A user';

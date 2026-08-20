@@ -21,7 +21,6 @@ export default function CollegesSection() {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
-  // Theme colors
   const bgGradient = isDark
     ? 'linear-gradient(135deg, #0f1117 0%, #1a1060 100%)'
     : 'linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%)'
@@ -62,7 +61,7 @@ export default function CollegesSection() {
         e.currentTarget.style.borderColor = cardBorder
       }}
     >
-      {/* Decorative badge */}
+      {}
       {isPopular && (
         <div
           style={{
@@ -131,7 +130,7 @@ export default function CollegesSection() {
   return (
     <section style={{ background: sectionBg, padding: '60px 20px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Popular Colleges */}
+        {}
         <div style={{ marginBottom: '60px' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2
@@ -175,7 +174,7 @@ export default function CollegesSection() {
           </div>
         </div>
 
-        {/* Trending Colleges */}
+        {}
         <div>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2

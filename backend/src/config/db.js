@@ -11,7 +11,6 @@ const pool = mysql.createPool({
   queueLimit: 100, // Hard limit database queue size to prevent OOM / hanging
 });
 
-// Watch database errors
 pool.on('connection', (connection) => {
   connection.on('error', (err) => {
     console.error('[DATABASE PROTOCOL ERROR]', err);

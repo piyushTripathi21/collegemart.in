@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Complete college list
 const COLLEGES = [
   {"name":"Indian Institute of Technology Delhi","state":"Delhi","short":"IIT Delhi"},
   {"name":"University of Delhi","state":"Delhi","short":"DU Delhi"},
@@ -242,7 +241,7 @@ export default function CollegeInput() {
     setInput(college.name)
     setSuggestions([])
     setShowDropdown(false)
-    // Navigate to college details page
+
     localStorage.setItem('selectedCollege', JSON.stringify(college))
     navigate(`/college/${encodeURIComponent(college.name)}`)
   }

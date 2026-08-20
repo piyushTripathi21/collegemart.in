@@ -14,7 +14,6 @@ async function runMigration() {
 
   console.log('Connected to database. Running admin panel migration...\n');
 
-  // 1. Create admin_users table
   await connection.query(`
     CREATE TABLE IF NOT EXISTS admin_users (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,7 +29,6 @@ async function runMigration() {
   `);
   console.log('✅ admin_users table created');
 
-  // 2. Create admin_logs table
   await connection.query(`
     CREATE TABLE IF NOT EXISTS admin_logs (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,7 +44,6 @@ async function runMigration() {
   `);
   console.log('✅ admin_logs table created');
 
-  // 3. Create site_settings table
   await connection.query(`
     CREATE TABLE IF NOT EXISTS site_settings (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,7 +55,6 @@ async function runMigration() {
   `);
   console.log('✅ site_settings table created');
 
-  // 4. Create user_bans table
   await connection.query(`
     CREATE TABLE IF NOT EXISTS user_bans (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -74,7 +70,6 @@ async function runMigration() {
   `);
   console.log('✅ user_bans table created');
 
-  // 5. Create announcements table
   await connection.query(`
     CREATE TABLE IF NOT EXISTS announcements (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,7 +85,6 @@ async function runMigration() {
   `);
   console.log('✅ announcements table created');
 
-  // 6. Add columns to users table
   const addColumnSafe = async (table, column, definition) => {
     const [cols] = await connection.query(
       `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?`,
@@ -121,7 +115,6 @@ async function runMigration() {
   await addColumnSafe('reports', 'resolved_by', 'INT NULL');
   await addColumnSafe('reports', 'resolved_at', 'TIMESTAMP NULL');
 
-  // 7. Create indexes (ignore errors if they already exist)
   const indexes = [
     ['idx_admin_logs_admin', 'admin_logs', 'admin_id'],
     ['idx_admin_logs_created', 'admin_logs', 'created_at'],
@@ -160,7 +153,6 @@ async function runMigration() {
     }
   }
 
-  // 8. Seed super admin
   console.log('\nSeeding admin account...');
   const [existing] = await connection.query('SELECT id FROM admin_users WHERE email = ?', ['admin@collegemart.com']);
   if (existing.length === 0) {
@@ -174,7 +166,6 @@ async function runMigration() {
     console.log('⏭️  Admin account already exists');
   }
 
-  // 9. Seed default settings
   console.log('\nSeeding site settings...');
   const settings = [
     ['maintenance_mode', 'false'],
@@ -193,7 +184,7 @@ async function runMigration() {
         'INSERT IGNORE INTO site_settings (setting_key, setting_value) VALUES (?, ?)',
         [key, value]
       );
-    } catch (e) { /* ignore duplicates */ }
+    } catch (e) {  }
   }
   console.log('✅ Site settings seeded');
 

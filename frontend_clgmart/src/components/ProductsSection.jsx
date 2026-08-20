@@ -56,7 +56,6 @@ export default function ProductsSection({ selectedCategory = '☰ ALL CATEGORIES
     fetchProducts()
   }, [selectedCategory, selectedCollege])
 
-  // Load favorites from backend on mount
   useEffect(() => {
     const loadFavorites = async () => {
       if (!user) {
@@ -156,7 +155,6 @@ export default function ProductsSection({ selectedCategory = '☰ ALL CATEGORIES
     }
   }
 
-  // Get category display name (remove ☰ if present)
   const categoryDisplayName = selectedCategory.replace('☰ ', '')
 
   const isFreshView = categoryDisplayName === 'ALL CATEGORIES' && !searchQuery.trim()

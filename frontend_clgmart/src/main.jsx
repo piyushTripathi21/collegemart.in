@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios'
 
-// Set global axios defaults for CSRF protection
 axios.defaults.xsrfCookieName = 'csrfToken';
 axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
 

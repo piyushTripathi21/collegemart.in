@@ -297,7 +297,7 @@ export default function BlogPostDetail({ user, onOpenLogin }) {
         fontFamily: 'inherit',
         transition: 'background 0.3s ease, color 0.3s ease'
       }}>
-        {/* Subtle decorative blobs across the blog detail page */}
+        {}
         <div style={{
           position: 'absolute', top: '100px', right: '-150px',
           width: '600px', height: '600px', borderRadius: '50%',
@@ -327,7 +327,7 @@ export default function BlogPostDetail({ user, onOpenLogin }) {
       fontFamily: 'inherit',
       transition: 'background 0.3s ease, color 0.3s ease'
     }}>
-      {/* Subtle decorative blobs across the blog detail page */}
+      {}
       <div style={{
         position: 'absolute', top: '100px', right: '-150px',
         width: '600px', height: '600px', borderRadius: '50%',

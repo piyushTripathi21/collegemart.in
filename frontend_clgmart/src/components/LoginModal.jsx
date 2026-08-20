@@ -16,7 +16,6 @@ export default function LoginModal({ onClose, onLogin }) {
   const [loading, setLoading] = useState(false)
   const [acceptedTerms, setAcceptedTerms] = useState(false)
 
-  // College suggestions state
   const [suggestions, setSuggestions] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
@@ -72,13 +71,11 @@ export default function LoginModal({ onClose, onLogin }) {
     }
   }
 
-  // Forgot password state
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [forgotEmail, setForgotEmail] = useState('')
   const [forgotLoading, setForgotLoading] = useState(false)
   const [forgotSent, setForgotSent] = useState(false)
 
-  // OTP Verification state
   const [showOtpScreen, setShowOtpScreen] = useState(false)
   const [otp, setOtp] = useState('')
   const [otpLoading, setOtpLoading] = useState(false)
@@ -206,7 +203,6 @@ export default function LoginModal({ onClose, onLogin }) {
     }
   }
 
-  // Forgot Password view
   if (showForgotPassword) {
     return (
       <div style={{
@@ -349,7 +345,6 @@ export default function LoginModal({ onClose, onLogin }) {
     )
   }
 
-  // OTP Verification view
   if (showOtpScreen) {
     return (
       <div style={{
@@ -644,7 +639,7 @@ export default function LoginModal({ onClose, onLogin }) {
             required
           />
 
-          {/* Forgot Password link (Issue #11) */}
+          {}
           {!isSignUp && (
             <div style={{ textAlign: 'right', marginBottom: '12px' }}>
               <button
@@ -664,7 +659,7 @@ export default function LoginModal({ onClose, onLogin }) {
             </div>
           )}
 
-          {/* Terms of Service checkbox (Issue #26) */}
+          {}
           {isSignUp && (
             <label style={{
               display: 'flex',

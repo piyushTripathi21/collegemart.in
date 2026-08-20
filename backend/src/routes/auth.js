@@ -21,7 +21,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const uploadDir = path.join(__dirname, '../../public/uploads/');
 
-// Ensure uploads directory exists
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -38,7 +37,6 @@ const profileUpload = multer({
   }
 });
 
-// Email transporter setup from environment
 let emailTransporter;
 
 if (process.env.NODE_ENV !== 'production' && (
@@ -106,7 +104,6 @@ const escapeHtml = (text) => {
     .replace(/'/g, '&#039;');
 };
 
-// Register user
 router.post('/register', sensitiveLimiter, validateRegistrationInput, async (req, res) => {
   try {
     const email = req.body.email.toLowerCase().trim();
@@ -116,13 +113,11 @@ router.post('/register', sensitiveLimiter, validateRegistrationInput, async (req
 
     const connection = await pool.getConnection();
     const [existing] = await connection.query('SELECT id, email_verified FROM users WHERE email = ?', [email]);
-    
-    // Cryptographically secure random OTP (Issue #2 of Critical list)
+
     const otp = crypto.randomInt(100000, 1000000).toString();
     const expires = new Date(Date.now() + 15 * 60000); // 15 mins
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Cryptographically secure and unique verification token (Issue #3 of High list)
     let verificationToken;
     let collision = true;
     let attempts = 0;
@@ -162,7 +157,6 @@ router.post('/register', sensitiveLimiter, validateRegistrationInput, async (req
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
     const verifyLink = `${frontendUrl}/verify-email/${verificationToken}`;
 
-    // Send verification email with OTP and Link (Issue #6 of Critical list & Issue #3 of High list)
     await emailTransporter.sendMail({
       from: process.env.EMAIL_FROM || 'noreply@collegemart.in',
       to: email,
@@ -187,7 +181,6 @@ router.post('/register', sensitiveLimiter, validateRegistrationInput, async (req
   }
 });
 
-// Verify OTP
 router.post('/verify-otp', sensitiveLimiter, async (req, res) => {
   try {
     const email = String(req.body.email || '').toLowerCase().trim();
@@ -245,7 +238,6 @@ router.post('/verify-otp', sensitiveLimiter, async (req, res) => {
   }
 });
 
-// Resend OTP
 router.post('/resend-otp', sensitiveLimiter, async (req, res) => {
   try {
     const email = String(req.body.email || '').toLowerCase().trim();
@@ -270,11 +262,9 @@ router.post('/resend-otp', sensitiveLimiter, async (req, res) => {
       return res.status(400).json({ error: 'Email is already verified' });
     }
 
-    // Generate cryptographically secure random OTP
     const otp = crypto.randomInt(100000, 1000000).toString();
     const expires = new Date(Date.now() + 15 * 60000); // 15 mins
 
-    // Ensure we have a verification token
     let verificationToken = user.email_verification_token;
     if (!verificationToken) {
       let collision = true;
@@ -328,7 +318,6 @@ router.post('/resend-otp', sensitiveLimiter, async (req, res) => {
   }
 });
 
-// Refresh Token (Issue #7 of Critical list)
 router.post('/refresh-token', refreshTokenLimiter, async (req, res) => {
   const cookieHeader = req.headers.cookie || '';
   const cookies = Object.fromEntries(
@@ -359,7 +348,6 @@ router.post('/refresh-token', refreshTokenLimiter, async (req, res) => {
       const newRefreshToken = generateRefreshToken(user);
       setRefreshTokenCookie(res, newRefreshToken);
 
-      // Rotate CSRF token on refresh (Issue #6 of Critical list)
       rotateCsrfToken(req, res);
 
       res.json({ token: accessToken });
@@ -369,7 +357,6 @@ router.post('/refresh-token', refreshTokenLimiter, async (req, res) => {
   });
 });
 
-// Login
 router.post('/login', loginLimiter, async (req, res) => {
   try {
     const email = String(req.body.email || '').toLowerCase().trim();
@@ -411,7 +398,6 @@ router.post('/login', loginLimiter, async (req, res) => {
     const refreshToken = generateRefreshToken(user);
     setRefreshTokenCookie(res, refreshToken);
 
-    // Rotate CSRF token on login (Issue #6 of Critical list)
     rotateCsrfToken(req, res);
 
     delete user.password;
@@ -424,10 +410,8 @@ router.post('/login', loginLimiter, async (req, res) => {
   }
 });
 
-// Google OAuth Client Initialization
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-// Google Login Endpoint
 router.post('/google-login', async (req, res) => {
   try {
     const { token } = req.body;
@@ -435,7 +419,6 @@ router.post('/google-login', async (req, res) => {
       return res.status(400).json({ error: 'Google ID token is required' });
     }
 
-    // Verify token with Google
     const ticket = await googleClient.verifyIdToken({
       idToken: token,
       audience: process.env.GOOGLE_CLIENT_ID
@@ -451,8 +434,7 @@ router.post('/google-login', async (req, res) => {
     const profileImage = payload.picture || null;
 
     const connection = await pool.getConnection();
-    
-    // Check if the user exists
+
     const [rows] = await connection.query(
       'SELECT id, email, name, college, phone, profile_image, coins, email_verified, is_banned FROM users WHERE email = ?',
       [email]
@@ -461,9 +443,7 @@ router.post('/google-login', async (req, res) => {
     let user;
 
     if (rows.length === 0) {
-      // Create user if they don't exist
-      // Since Google verified the email, we mark email_verified = 1.
-      // Generate a random secure placeholder password since password column is NOT NULL
+
       const placeholderPassword = await bcrypt.hash(crypto.randomBytes(32).toString('hex'), 10);
       
       const [insertResult] = await connection.query(
@@ -487,13 +467,11 @@ router.post('/google-login', async (req, res) => {
         return res.status(403).json({ error: 'Your account has been banned' });
       }
 
-      // If user wasn't verified before, mark them as verified now
       if (!user.email_verified) {
         await connection.query('UPDATE users SET email_verified = 1 WHERE id = ?', [user.id]);
         user.email_verified = 1;
       }
-      
-      // Optionally update profile image if none was set
+
       if (!user.profile_image && profileImage) {
         await connection.query('UPDATE users SET profile_image = ? WHERE id = ?', [profileImage, user.id]);
         user.profile_image = profileImage;
@@ -508,7 +486,6 @@ router.post('/google-login', async (req, res) => {
     const refreshToken = generateRefreshToken(user);
     setRefreshTokenCookie(res, refreshToken);
 
-    // Rotate CSRF token on login
     rotateCsrfToken(req, res);
 
     delete user.password;
@@ -522,7 +499,6 @@ router.post('/google-login', async (req, res) => {
   }
 });
 
-// Forgot Password
 router.post('/forgot-password', forgotPasswordLimiter, async (req, res) => {
   try {
     const email = String(req.body.email || '').toLowerCase().trim();
@@ -538,8 +514,7 @@ router.post('/forgot-password', forgotPasswordLimiter, async (req, res) => {
     }
 
     const user = users[0];
-    
-    // TOKEN COLLISION FIX: verify uniqueness of generated token
+
     let token;
     let collision = true;
     while (collision) {
@@ -584,7 +559,6 @@ router.post('/forgot-password', forgotPasswordLimiter, async (req, res) => {
   }
 });
 
-// Reset Password
 router.post('/reset-password/:token', async (req, res) => {
   try {
     const { token } = req.params;
@@ -622,7 +596,6 @@ router.post('/reset-password/:token', async (req, res) => {
   }
 });
 
-// Get User Profile
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT id, email, name, college, phone, profile_image, coins FROM users WHERE id = ?', [req.user.id]);
@@ -635,7 +608,6 @@ router.get('/me', authenticateToken, async (req, res) => {
   }
 });
 
-// Update Profile
 router.put('/:id', authenticateToken, async (req, res) => {
   try {
     if (parseInt(req.params.id, 10) !== req.user.id) {
@@ -645,14 +617,12 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const { name, college, phone } = req.body;
     const profileImageInput = req.body.profileImage !== undefined ? req.body.profileImage : req.body.profile_image;
 
-    // Validate college against whitelist
     if (college && !validateCollege(college)) {
       return res.status(400).json({ error: 'Invalid college selected' });
     }
 
     const connection = await pool.getConnection();
-    
-    // Fetch existing profile image to prevent overwriting with null if not provided
+
     const [existing] = await connection.query('SELECT profile_image FROM users WHERE id = ?', [req.user.id]);
     const currentImage = existing[0]?.profile_image || null;
     const finalImage = profileImageInput !== undefined ? (profileImageInput || null) : currentImage;
@@ -672,7 +642,6 @@ router.put('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// GET /verify-email/:token (Issue #6 of Critical list)
 router.get('/verify-email/:token', async (req, res) => {
   try {
     const { token } = req.params;
@@ -700,7 +669,6 @@ router.get('/verify-email/:token', async (req, res) => {
   }
 });
 
-// POST /logout (Issue #4 of High list)
 router.post('/logout', authenticateToken, async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
@@ -708,19 +676,16 @@ router.post('/logout', authenticateToken, async (req, res) => {
       const token = authHeader.split(' ')[1];
       const decoded = jwt.decode(token);
       const expiresAt = decoded && decoded.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 15 * 60 * 1000);
-      
-      // Blacklist access token
+
       await pool.query('INSERT IGNORE INTO token_blacklist (token, expires_at) VALUES (?, ?)', [token, expiresAt]);
     }
-    
-    // Clear refresh token cookie
+
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'Strict'
     });
-    
-    // Rotate CSRF token
+
     rotateCsrfToken(req, res);
     
     res.json({ message: 'Logged out successfully' });
@@ -729,7 +694,6 @@ router.post('/logout', authenticateToken, async (req, res) => {
   }
 });
 
-// POST /users/:id/upload-profile-image
 router.post('/:id/upload-profile-image', authenticateToken, profileUpload.single('profileImage'), async (req, res) => {
   try {
     if (parseInt(req.params.id, 10) !== req.user.id) {
@@ -741,7 +705,6 @@ router.post('/:id/upload-profile-image', authenticateToken, profileUpload.single
       return res.status(400).json({ error: 'No image file provided' });
     }
 
-    // Upload to Cloudinary (falls back to local disk if not configured)
     const imageUrl = await uploadToCloudinary(req.file.path, 'profiles');
 
     await pool.query(
@@ -759,7 +722,6 @@ router.post('/:id/upload-profile-image', authenticateToken, profileUpload.single
   }
 });
 
-// GET /users/:id/favorites
 router.get('/:id/favorites', authenticateToken, async (req, res) => {
   try {
     if (parseInt(req.params.id, 10) !== req.user.id) {
@@ -781,7 +743,6 @@ router.get('/:id/favorites', authenticateToken, async (req, res) => {
   }
 });
 
-// POST /users/:id/favorites
 router.post('/:id/favorites', authenticateToken, async (req, res) => {
   try {
     if (parseInt(req.params.id, 10) !== req.user.id) {
@@ -793,7 +754,7 @@ router.post('/:id/favorites', authenticateToken, async (req, res) => {
     }
 
     const connection = await pool.getConnection();
-    // Verify product exists
+
     const [products] = await connection.query('SELECT id FROM products WHERE id = ?', [productId]);
     if (products.length === 0) {
       connection.release();
@@ -811,7 +772,6 @@ router.post('/:id/favorites', authenticateToken, async (req, res) => {
   }
 });
 
-// DELETE /users/:id/favorites or /users/:id/favorites/:productId
 router.delete(['/:id/favorites', '/:id/favorites/:productId'], authenticateToken, async (req, res) => {
   try {
     if (parseInt(req.params.id, 10) !== req.user.id) {
