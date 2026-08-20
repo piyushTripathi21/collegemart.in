@@ -1,0 +1,15 @@
+node_modules
+.env
+.env.local
+.env.*.local
+dist
+build
+public/uploads
+*.log
+.git
+.gitignore
+.vscode
+.idea
+*.md
+*.sql
+fix-admin-slate.mjs

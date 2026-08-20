@@ -1,0 +1,33 @@
+name: CollegeMart CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: Run Automated Tests
+      run: npm test
+      env:
+        NODE_ENV: test
+        JWT_SECRET: college_mart_test_secret_key_long_enough
+
+    - name: Build Production Frontend Assets
+      run: npm run build
